@@ -12,7 +12,7 @@ const ProjectCard = memo(({ imgUrl, title, description, gitUrl }) => {
     <div className={`h-[400px] rounded-xl overflow-hidden transition-all duration-300 hover:scale-105
                     ${isDarkMode 
                       ? 'bg-[#073642] border border-[#586e75]' 
-                      : 'bg-[#eee8d5] border border-[#93a1a1]'}`}>
+                      : 'bg-[#e6eef8] border border-[#93a1a1]'}`}>
       <div className="h-48 sm:h-52 md:h-52 relative group">
         <Image
           src={imgUrl}
@@ -24,7 +24,7 @@ const ProjectCard = memo(({ imgUrl, title, description, gitUrl }) => {
           priority={false}
         />
         <div className={`overlay items-center justify-center absolute top-0 left-0 w-full h-full 
-                        ${isDarkMode ? 'bg-[#073642]' : 'bg-[#eee8d5]'}
+                        ${isDarkMode ? 'bg-[#073642]' : 'bg-[#e6eef8]'}
                         bg-opacity-0 hidden group-hover:flex group-hover:bg-opacity-80 
                         transition-all duration-500`}>
           <Link

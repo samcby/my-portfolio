@@ -15,7 +15,7 @@ const HeroImage = () => {
       className="col-span-12 sm:col-span-6 lg:col-span-5 place-self-center mt-8 sm:mt-0"
     >
       <div className={`rounded-full w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] lg:w-[400px] lg:h-[400px] relative
-                      ${isDarkMode ? 'bg-[#073642]' : 'bg-[#eee8d5]'}`}>
+                      ${isDarkMode ? 'bg-[#073642]' : 'bg-[#e6eef8]'}`}>
         <Image
           src="/images/usagi-image.webp"
           alt="usagi image"

@@ -104,7 +104,7 @@ const HeroTextContent = () => {
             } ${
               isDarkMode
                 ? "bg-[#161b22] text-[#8b949e] border border-[#30363d]"
-                : "bg-[#eee8d5] text-[#657b83] border border-[#d0d7de]"
+                : "bg-[#e6eef8] text-[#657b83] border border-[#d0d7de]"
             }`}
           >
             This is very interesting, I put it here for your entertainment.

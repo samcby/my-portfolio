@@ -53,8 +53,8 @@ const TabDataContent = () => {
           <Image
               src={
                 isDarkMode
-                  ? "/images/UCLA_Samueli_CS_block_cmyk_rev.svg"
-                  : "/images/UCLA_Samueli_CS_block_cmyk.svg"
+                  ? "/images/UCLA_Samueli_ECE_block_cmyk_rev.svg"
+                  : "/images/UCLA_Samueli_ECE_block_cmyk.svg"
               }
               alt="UCLA School of Engineering"
             width={300}

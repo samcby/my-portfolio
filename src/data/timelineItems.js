@@ -23,10 +23,10 @@ const TIMELINE_ITEMS = [
     title: "Research on Building a Comprehensive Benchmark for AMS Circuits",
     location: "UCLA | BTD | Research Assistant",
     description:
-      "By systematically combing through textbook knowledge on analog chip design, we built an evaluation system to assess the professional capabilities of large language models (LLMs), and co-authored the relevant research results into a paper and submitted it to NeurIPS.",
+      "By systematically combing through textbook knowledge on analog chip design, we built an evaluation system to assess the professional capabilities of large language models (LLMs), and co-authored the relevant research results into a paper and submitted it to ICLR.",
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
-      "Collect and organize all the analog IC related textbooks currently on the market, such as the Razavi version, and grade the knowledge according to the difficulty level for undergraduates and postgraduates. Based on the relevant knowledge in textbooks, design test plans, test question types, etc. to fully test the current LLM's ability in Analog IC. Collaborated with team members to write a paper, which has been submitted to NeurIPS. ",
+      "Collect and organize all the analog IC related textbooks currently on the market, such as the Razavi version, and grade the knowledge according to the difficulty level for undergraduates and postgraduates. Based on the relevant knowledge in textbooks, design test plans, test question types, etc. to fully test the current LLM's ability in Analog IC. Collaborated with team members to write a paper, which has been submitted to ICLR. ",
   },
   {
     date: "Jul 2024 - Dec 2024",

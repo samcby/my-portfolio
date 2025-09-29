@@ -141,7 +141,7 @@ const Navbar = () => {
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full border-2
               ${isDarkMode 
                 ? 'bg-[#f8fafc] border-[#586e75] text-[#93a1a1]' 
-                : 'bg-[#eee8d5] border-[#93a1a1] text-[#586e75]'}`}
+                : 'bg-[#e6eef8] border-[#93a1a1] text-[#586e75]'}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -201,7 +201,7 @@ const Navbar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           className={`md:hidden ${
-            isDarkMode ? 'bg-[#00212b]/95' : 'bg-[#eee8d5]/95'
+            isDarkMode ? 'bg-[#00212b]/95' : 'bg-[#e6eef8]/95'
           }`}
         >
           <div className="flex flex-col items-center py-2">

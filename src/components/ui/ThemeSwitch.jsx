@@ -12,7 +12,7 @@ const ThemeSwitch = () => {
       className={`${
         isDarkMode 
           ? 'bg-[#073642] border-[#586e75]' 
-          : 'bg-[#eee8d5] border-[#93a1a1]'
+          : 'bg-[#e6eef8] border-[#93a1a1]'
       } relative inline-flex h-8 w-24 items-center rounded-full transition-colors duration-300 focus:outline-none border-2`}
     >
       <span className="sr-only">Toggle theme</span>

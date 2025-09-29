@@ -13,11 +13,11 @@ const PROJECT_DATA = [
     id: 2,
     title: "Research on Building a Comprehensive Benchmark for AMS Circuits",
     description:
-      "By systematically combing through textbook knowledge on analog chip design, we built an evaluation system to assess the professional capabilities of large language models (LLMs), and co-authored the relevant research results into a paper and submitted it to NeurIPS.",
+      "By systematically combing through textbook knowledge on analog chip design, we built an evaluation system to assess the professional capabilities of large language models (LLMs), and co-authored the relevant research results into a paper and submitted it to ICLR.",
     image: "/images/projects/dataset.png",
     tag: ["All", "EDA"],
     gitUrl:
-      "https://openreview.net/forum?id=m7paXIoQyz#discussion",
+      "https://openreview.net/forum?id=L81mgR8RH8&referrer=%5Bthe%20profile%20of%20Bingyu%20Chen%5D(%2Fprofile%3Fid%3D~Bingyu_Chen1)",
     previewUrl: "/",
   },
   {

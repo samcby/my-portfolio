@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className={`footer border-t transition-colors duration-300
                        ${isDarkMode 
                          ? 'border-t-[#586e75] bg-[#00212b] text-[#93a1a1]' 
-                         : 'border-t-[#93a1a1] bg-[#eee8d5] text-[#586e75]'}`}>
+                         : 'border-t-[#93a1a1] bg-[#e6eef8] text-[#586e75]'}`}>
       <div className="container mx-auto p-6 md:p-4 lg:p-5 flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Logo */}
         <div className={`transition-colors duration-300

@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import CustomCursor from "@/components/CustomCursor";
 
 export const metadata = {
-  title: "Rick's Portfolio",
+  title: "Sam's Portfolio",
   description: "Welcome to my portfolio",
 };
 
