@@ -68,7 +68,7 @@ const AboutSection = () => {
                 <span className="font-medium theme-primary">
                   Cadence Virtuoso, Vivado, and Altium Designer
                 </span>
-                , etc.. I'm also proficient in software development and writing 
+                , etc.. I am also proficient in software development and writing 
                 using computer programming languages ​​like Python, Matlab, and C. 
                 Currently, my expertise spans multiple IC-related areas, including 
                 front-end circuit design, EDA, hardware acceleration, FPGAs, and devices.
@@ -90,7 +90,7 @@ const AboutSection = () => {
               <p>
                 Besides my professional life, I like playing piano, traveling, 
                 taking photos and videos and playing games🎮. I also love cats🐱, 
-                although I don’t have my own cat yet.
+                although I do not have my own cat yet.
               </p>
               <p className="mt-3 text-sm italic theme-primary">
                 <Link
