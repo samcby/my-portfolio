@@ -73,7 +73,7 @@ const PROJECT_DATA = [
   },
   {
     id: 8,
-    title: "CNN Hardware Accelerating",
+    title: "Single-Cycle RISC-V CPU Design",
     description:
       "Use C++ to build a RISC-V CPU based on the proposed instruction set. It can implement the basic single-cycle CPU architecture, including instruction processing, registers, memory, control unit, etc.",
     image: "/images/projects/singleriscv.jpg",
