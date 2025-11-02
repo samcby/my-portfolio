@@ -1,5 +1,15 @@
 const TIMELINE_ITEMS = [
   {
+    date: "Sep 2025 - Dec 2025",
+    title: "Research on designing a complex Out-of-Order processor implemented in Verilog",
+    location: "UCLA | Los Angeles, CA",
+    description:
+      "Ongoing Project",
+    logo: "https://p.ipic.vip/q1ysgx.png",
+    details:
+      "Ongoing Project",
+  },  
+  {
     date: "Sep 2025 - TBD",
     title: "Master of Electrical and Computer Engineering",
     location: "UCLA | Los Angeles, CA",

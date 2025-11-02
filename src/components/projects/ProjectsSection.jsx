@@ -54,6 +54,11 @@ const ProjectsSection = () => {
           name="EMBEDDED"
           isSelected={tag === "EMBEDDED"}
         />
+        <ProjectTag
+          onClick={handleTagChange}
+          name="COMPUTER ARCHITECTURE"
+          isSelected={tag === "COMPUTER ARCHITECTURE"}
+        />        
       </div>
       <ul ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-12 w-full max-w-[1200px]">
         {filteredProjects.map((project, index) => (

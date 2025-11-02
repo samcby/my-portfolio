@@ -70,7 +70,17 @@ const PROJECT_DATA = [
     tag: ["All", "HARDWARE ACC"],
     gitUrl: "",
     previewUrl: "/",
-  },  
+  },
+  {
+    id: 8,
+    title: "CNN Hardware Accelerating",
+    description:
+      "Use C++ to build a RISC-V CPU based on the proposed instruction set. It can implement the basic single-cycle CPU architecture, including instruction processing, registers, memory, control unit, etc.",
+    image: "/images/projects/singleriscv.jpg",
+    tag: ["All", "COMPUTER ARCHITECTURE"],
+    gitUrl: "https://github.com/samcby/Simple-Single-Cycle-RISC-V-CPU",
+    previewUrl: "/",
+  },    
 ];
 
 export default PROJECT_DATA;
