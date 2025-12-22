@@ -19,8 +19,23 @@ export const educationData = [
   {
     degree: "M.S. in Electrical and Computer Engineering",
     period: "09/2025 - TBD",
-    gpa: "TBD",
+    gpa: "4.0/4.0",
     courses: [
+      {
+        name: "ECE M216A - Design of VLSI Circuits and Systems",
+        achievement:
+          "Achieved A+",
+      },
+      {
+        name: "ECE M116C - Computer Systems Architecture",
+        achievement:
+          "Achieved A+",
+      },
+      {
+        name: "ECE 189 - Advanced Honors Seminars (Related to ECE M116C)",
+        achievement:
+          "Achieved A",
+      },      
     ],
   },
   {

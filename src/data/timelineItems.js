@@ -1,13 +1,13 @@
 const TIMELINE_ITEMS = [
   {
     date: "Sep 2025 - Dec 2025",
-    title: "Research on designing a complex Out-of-Order processor implemented in Verilog",
+    title: "Design of a Complex Out-of-Order RISC-V processor implemented in SystemVerilog",
     location: "UCLA | Los Angeles, CA",
     description:
-      "Ongoing Project",
+      "A comprehensive RISC-V OoO Processor with multiple advanced features.",
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
-      "Ongoing Project",
+      "We designed and implemented a complex out-of-order RISC-V processor using SystemVerilog. The processor flow supports out-of-order execution, renaming, dispatching, reservation stations, and many other advanced features.",
   },  
   {
     date: "Sep 2025 - TBD",
