@@ -21,7 +21,7 @@ const HeroTextContent = () => {
           isDarkMode ? "text-white" : "text-[#002b36]"
         }`}
       >
-        <span className="bg-gradient-to-r from-primary-500 via-primary-400 to-secondary-500 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[#268bd2] via-[#2aa198] to-[#b58900] bg-clip-text text-transparent">
           Hello, I&apos;m
         </span>
         <br className="hidden sm:block" />
@@ -44,7 +44,7 @@ const HeroTextContent = () => {
       </h1>
       <p
         className={`mb-6 max-w-[600px] text-sm sm:mx-0 sm:text-base lg:text-lg ${
-          isDarkMode ? "text-[#ADB7BE]" : "text-[#586e75]"
+          isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"
         }`}
       >
         I build research-driven hardware and IC design projects across EDA,
@@ -56,7 +56,7 @@ const HeroTextContent = () => {
             href="https://drive.google.com/file/d/1aMRk6cMOr5sgWcwZOsVDEXbRZ4Pq6Poo/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:from-primary-600 hover:to-secondary-600 sm:text-lg"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#268bd2] px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-[#2aa198] sm:text-lg"
           >
             Resume
             <svg
@@ -79,7 +79,7 @@ const HeroTextContent = () => {
             className={`inline-flex items-center justify-center rounded-full border px-6 py-3 text-base font-semibold transition-all duration-300 sm:text-lg ${
               isDarkMode
                 ? "border-[#586e75] text-[#fdf6e3] hover:border-[#2aa198] hover:text-[#2aa198]"
-                : "border-[#268bd2] text-[#002b36] hover:border-[#2aa198] hover:text-[#2aa198]"
+                : "border-[#93a1a1] text-[#002b36] hover:border-[#2aa198] hover:text-[#2aa198]"
             }`}
           >
             Explore Projects
@@ -87,20 +87,22 @@ const HeroTextContent = () => {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3 text-xs sm:justify-start sm:text-sm">
-          {["M.S. ECE @ UCLA", "EDA + Mixed-Signal", "Hardware Acceleration"].map(
-            (item) => (
-              <span
-                key={item}
-                className={`rounded-full border px-3 py-1 ${
-                  isDarkMode
-                    ? "border-[#586e75] text-[#93a1a1]"
-                    : "border-[#93a1a1] text-[#586e75]"
-                }`}
-              >
-                {item}
-              </span>
-            )
-          )}
+          {[
+            "M.S. ECE @ UCLA",
+            "EDA + Mixed-Signal",
+            "Hardware Acceleration",
+          ].map((item) => (
+            <span
+              key={item}
+              className={`rounded-full border px-3 py-1 ${
+                isDarkMode
+                  ? "border-[#586e75] bg-[#073642] text-[#93a1a1]"
+                  : "border-[#93a1a1] bg-white text-[#586e75]"
+              }`}
+            >
+              {item}
+            </span>
+          ))}
         </div>
 
         <div
@@ -114,8 +116,7 @@ const HeroTextContent = () => {
             }`}
           >
             <span className="animate-pulse">See also:</span>{" "}
-            The 3D model is
-            {" "}
+            The 3D model is {" "}
             <Link
               href="https://skfb.ly/prRXD"
               target="_blank"

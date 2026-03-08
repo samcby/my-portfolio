@@ -4,7 +4,7 @@ const PROJECT_DATA = [
     title: "Microbenchmark Analysis with gem5",
     description:
       "Analyzed how out-of-order execution, issue width, cache hierarchy, and clock frequency influence performance across a set of microbenchmarks in gem5.",
-    image: "",
+    image: "/images/projects/microbench.png",
     tag: ["All", "COMPUTER ARCHITECTURE"],
     stack: ["gem5", "Microbenchmarking", "Performance Analysis"],
     year: 2026,
@@ -18,7 +18,7 @@ const PROJECT_DATA = [
     title: "M4 Accelerator in gem5 x86",
     description:
       "Extended gem5's x86 ISA with a custom 4x4 tile matrix-multiplication accelerator, including custom instructions, timing-aware memory behavior, and a benchmark for tiled GEMM.",
-    image: "",
+    image: "/images/projects/M4acc.png",
     tag: ["All", "HARDWARE ACC", "COMPUTER ARCHITECTURE"],
     stack: ["gem5", "x86 ISA", "Accelerator Design"],
     year: 2026,
@@ -32,7 +32,7 @@ const PROJECT_DATA = [
     title: "LRU Approximations and Thrash-Resistant Cache Policies in gem5",
     description:
       "Implemented NMRU in gem5 and evaluated lightweight LRU approximations and thrash-resistant cache policies on SPEC CPU2017 and synthetic streaming workloads.",
-    image: "",
+    image: "/images/projects/LRUappro.png",
     tag: ["All", "COMPUTER ARCHITECTURE"],
     stack: ["gem5", "Cache Policies", "SPEC CPU2017"],
     year: 2026,

@@ -86,7 +86,7 @@ const EmailSection = () => {
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className={`text-sm sm:text-base leading-7 ${isDarkMode ? "text-[#839496]" : "text-[#586e75]"}`}>
-              I am always open to research conversations, internships, and engineering collaborations.
+              I am always open to research and internships, opportunities.
               If you would like to discuss a project, paper, or opportunity, feel free to send a message.
             </p>
 

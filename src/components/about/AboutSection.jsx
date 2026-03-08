@@ -56,19 +56,19 @@ const AboutSection = () => {
                 passionate and energetic IC enthusiast with a solid foundation in 
                 microelectronics science. I hold a B.E. in Microelectronics Science 
                 and Engineering and am currently pursuing a M.S. in ECE at UCLA. 
-                I came from Guangzhou, 馃嚚馃嚦, and currently live in Los Angeles, California. 
+                I came from Guangzhou, and currently live in Los Angeles, California. 
                 I can speak Mandarin and English, and am relatively proficient in Cantonese, 
                 but I still need to improve. 
               </p>
 
               <p>
-                I specialize in circuit and circuit board design, including 
-                analog, digital, and PCB design, using tools like{" "}
+                I specialize in IC design and computer architecture, including 
+                analog, digital, architecture and hardware acceleration, using tools like{" "}
                 <span className="font-medium theme-primary">
-                  Cadence Virtuoso, Vivado, and Altium Designer
+                  Cadence Virtuoso, Genus, Innovus, Vivado, and Gem5
                 </span>
                 , etc.. I am also proficient in software development and writing 
-                using computer programming languages 鈥嬧€媗ike Python, Matlab, and C. 
+                using computer programming languages like Python, Matlab, and C++. 
                 Currently, my expertise spans multiple IC-related areas, including 
                 front-end circuit design, EDA, hardware acceleration, FPGAs, and devices.
               </p>
@@ -88,7 +88,7 @@ const AboutSection = () => {
 
               <p>
                 Besides my professional life, I like playing piano, traveling, 
-                taking photos and videos and playing games馃幃. I also love cats馃惐, 
+                taking photos and videos and playing games. I also love cats, 
                 although I do not have my own cat yet.
               </p>
               <p className="mt-3 text-sm italic theme-primary">
@@ -96,7 +96,7 @@ const AboutSection = () => {
                   href="/hobbies"
                   className="cursor-pointer hover:underline"
                 >
-                  Know more about my hobbies 鈫?
+                  Know more about my hobbies?
                 </Link>
               </p>
             </div>

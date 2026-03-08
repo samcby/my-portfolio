@@ -48,7 +48,7 @@ const WindowContent = ({ id }) => {
       return (
         <div data-handle="true">
           <p className="text-xs mb-1 sm:mb-2 line-clamp-2 sm:line-clamp-3">
-            {'I love cat and dog. I have 2 cats named "DoiYuk" (white) and "WongChoi" (black).'}
+            {'I love playing games. The photo here is Bai E, which is pretty cool.'}
           </p>
           <Image 
             src="/images/games.jpg" 
