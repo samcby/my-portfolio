@@ -1,13 +1,15 @@
-"use client";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/home/hero/HeroSection";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { useTheme } from '@/context/ThemeContext';
 
-// 动态导入非关键组件
+export const metadata = {
+  title: "Home",
+  description:
+    "Landing page for Sam Chen's portfolio, featuring highlighted projects, background, and contact information.",
+};
+
 const ProjectsSection = dynamic(() => import("@/components/projects/ProjectsSection"), {
   loading: () => <div>Loading...</div>,
-  ssr: false
 });
 
 const AboutSection = dynamic(() => import("@/components/about/AboutSection"), {
@@ -19,21 +21,19 @@ const EmailSection = dynamic(() => import("@/components/contact/EmailSection"), 
 });
 
 export default function Home() {
-  const { isDarkMode } = useTheme();
-  
   return (
-    <main className={`flex min-h-screen flex-col ${isDarkMode ? 'bg-[#002b36]' : 'bg-[#fdf6e3]'}`}>
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-4 mt-16 sm:mt-20 md:mt-24">
+    <main className="flex min-h-screen flex-col bg-[var(--page-bg)]">
+      <div className="container mx-auto mt-16 px-4 py-4 sm:mt-20 sm:px-6 md:mt-24 md:px-8 lg:px-12">
         <HeroSection />
         <div className="mt-16 sm:mt-20">
-          <SectionTitle title=" " />
+          <SectionTitle title="About Me" />
           <AboutSection />
         </div>
         <div className="mt-16 sm:mt-20">
-          <SectionTitle title="My Projects" />
-          <ProjectsSection />
+          <SectionTitle title="Featured Projects" />
+          <ProjectsSection compact />
         </div>
-        <div className="mt-16 sm:mt-20 mb-16 sm:mb-24">
+        <div className="mt-16 mb-16 sm:mt-20 sm:mb-24">
           <SectionTitle title="Contact Me" />
           <EmailSection />
         </div>

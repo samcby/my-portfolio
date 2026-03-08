@@ -1,5 +1,25 @@
 const TIMELINE_ITEMS = [
   {
+    date: "Jan 2026 - Mar 2026",
+    title: "Decoding QWERTY Keystrokes from sEMG",
+    location: "UCLA | Los Angeles, CA",
+    description:
+      "Compared sequence models and ablations for decoding typed text from forearm sEMG signals using the emg2qwerty framework.",
+    logo: "https://p.ipic.vip/q1ysgx.png",
+    details:
+      "Built on Meta's emg2qwerty codebase and dataset setup to study character-level text prediction from surface EMG signals. Evaluated multiple model families and course-required ablations with Character Error Rate as the main metric using a PyTorch, PyTorch Lightning, and Hydra workflow.",
+  },
+  {
+    date: "Jan 2026 - Mar 2026",
+    title: "Accelerating Sparse Kernels via Near-Data Processing in gem5",
+    location: "UCLA | Los Angeles, CA",
+    description:
+      "Implemented a minimal near-data processing path in gem5 and measured when sparse accumulation updates benefit from being offloaded closer to memory.",
+    logo: "https://p.ipic.vip/q1ysgx.png",
+    details:
+      "Developed a lightweight processing-in-memory prototype in gem5 with a magic-instruction interface and a memory-side execution path for sparse accumulation updates. Evaluated microbenchmarks and an SpMV-style kernel across cache and memory-timing settings to study performance, locality, coherence effects, and data-movement tradeoffs versus a CPU baseline.",
+  },
+  {
     date: "Sep 2025 - Dec 2025",
     title: "Design of a Complex Out-of-Order RISC-V processor implemented in SystemVerilog",
     location: "UCLA | Los Angeles, CA",
@@ -8,7 +28,7 @@ const TIMELINE_ITEMS = [
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
       "We designed and implemented a complex out-of-order RISC-V processor using SystemVerilog. The processor flow supports out-of-order execution, renaming, dispatching, reservation stations, and many other advanced features.",
-  },  
+  },
   {
     date: "Sep 2025 - TBD",
     title: "Master of Electrical and Computer Engineering",
@@ -55,7 +75,7 @@ const TIMELINE_ITEMS = [
       "According to Robei's requirements, we used the company's EDA software and FPGA hardware to design and assemble a robot ourselves, enabling it to perform functions such as gripping and transferring goods with a robotic arm, moving, avoiding obstacles, traversing complex terrain, and remote control.",
     logo: "/images/sysu.jpg",
     details:
-      "Implemented a Bluetooth-controlled robotic car and arm system through hardware-software co-design: wrote Verilog for FPGA through Robei’s EDA(a tool without any IP cores) and developed a C# host program, achieving smooth, precise control via PID algorithms. ",
+      "Implemented a Bluetooth-controlled robotic car and arm system through hardware-software co-design: wrote Verilog for FPGA through Robei閳ユ獨 EDA(a tool without any IP cores) and developed a C# host program, achieving smooth, precise control via PID algorithms. ",
   },
   {
     date: "Jan 2024 - Feb 2024",
@@ -85,7 +105,7 @@ const TIMELINE_ITEMS = [
       "By reconstructing the adder's carry block and optimizing transistor size and supply voltage, I reduced the circuit's power consumption by 68.16% while still meeting speed requirements. ",
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
-      "Redesigned the adder by extracting and restructuring the carry-out module from a mirror adder, significantly reducing power and improving efficiency. Performed path effort-based delay analysis and used Excel Solver for sizing and VDD optimization, achieving 68.16% power reduction with delay kept within 1.5× the minimum.The related paper is published as follows: Bingyu Chen. An Optimal Low Energy Cost 4-bit Absolute Value Detector with 55.5 FO4 (1V) Based on CMOS Process, AIP Conference Proceedings. (2023) https://doi.org/10.1063/5.0171160",
+      "Redesigned the adder by extracting and restructuring the carry-out module from a mirror adder, significantly reducing power and improving efficiency. Performed path effort-based delay analysis and used Excel Solver for sizing and VDD optimization, achieving 68.16% power reduction with delay kept within 1.5鑴?the minimum.The related paper is published as follows: Bingyu Chen. An Optimal Low Energy Cost 4-bit Absolute Value Detector with 55.5 FO4 (1V) Based on CMOS Process, AIP Conference Proceedings. (2023) https://doi.org/10.1063/5.0171160",
   },
   {
     date: "Sept 2021 - June 2025",

@@ -3,7 +3,6 @@ import Link from "next/link";
 import React, { useState, useRef, useEffect } from "react";
 import NavLink from "@/components/layout/NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import MenuOverlay from "@/components/layout/MenuOverlay";
 import Logo from "@/components/layout/Logo";
 import { useTheme } from '@/context/ThemeContext';
 import { motion } from 'framer-motion';
@@ -67,9 +66,9 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* 右侧工具栏 */}
+        {/* 鍙充晶宸ュ叿鏍?*/}
         <div className="hidden md:flex items-center">
-          {/* 社交媒体链接 */}
+          {/* 绀句氦濯掍綋閾炬帴 */}
           <div className="flex items-center gap-8 mr-6">
             <motion.a
               href="https://github.com/samcby"
@@ -135,7 +134,7 @@ const Navbar = () => {
             </motion.a>
           </div>
 
-          {/* 暗色模式切换按钮 */}
+          {/* 鏆楄壊妯″紡鍒囨崲鎸夐挳 */}
           <motion.button
             onClick={toggleTheme}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full border-2
@@ -174,7 +173,7 @@ const Navbar = () => {
           </motion.button>
         </div>
 
-        {/* 移动端菜单按钮 */}
+        {/* 绉诲姩绔彍鍗曟寜閽?*/}
         <div className="md:hidden">
           <motion.button
             onClick={() => setNavbarOpen(!navbarOpen)}
@@ -194,7 +193,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* 移动端菜单 */}
+      {/* 绉诲姩绔彍鍗?*/}
       {navbarOpen && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -205,7 +204,7 @@ const Navbar = () => {
           }`}
         >
           <div className="flex flex-col items-center py-2">
-            {/* 导航链接 */}
+            {/* 瀵艰埅閾炬帴 */}
             <div className="w-full flex flex-col items-center">
               {navLinks.map((link, index) => (
                 <div 
@@ -229,10 +228,10 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* 分隔线 */}
+            {/* 鍒嗛殧绾?*/}
             <div className={`w-full h-[1px] my-1 ${isDarkMode ? 'bg-[#586e75]' : 'bg-[#93a1a1]'} opacity-30`}></div>
 
-            {/* 社交媒体链接和主题切换 */}
+            {/* 绀句氦濯掍綋閾炬帴鍜屼富棰樺垏鎹?*/}
             <div className="flex items-center justify-center gap-8 py-1.5 px-4">
               <motion.button
                 onClick={toggleTheme}
@@ -339,3 +338,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

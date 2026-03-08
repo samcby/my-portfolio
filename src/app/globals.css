@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Three.js canvas styles */
 canvas {
   touch-action: none;
   outline: none;
@@ -11,7 +10,6 @@ canvas {
   height: 100% !important;
 }
 
-/* Custom Scrollbar Styles */
 .scrollbar-dark::-webkit-scrollbar {
   width: 6px;
 }
@@ -46,7 +44,6 @@ canvas {
   background: #586e75;
 }
 
-/* 确保 Three.js 画布填充其容器 */
 .three-container {
   width: 100%;
   height: 100%;
@@ -54,13 +51,11 @@ canvas {
   overflow: hidden;
 }
 
-/* 防止画布上的文本选择 */
 .three-container * {
   user-select: none;
   -webkit-user-select: none;
 }
 
-/* 圆形容器样式 */
 .hero-model-container {
   position: relative;
   width: 100%;
@@ -75,6 +70,11 @@ canvas {
   --background-end-rgb: 255, 255, 255;
   --navbar-height: 4.5rem;
   --navbar-height-mobile: 4rem;
+  --page-bg: #fdf6e3;
+  --surface-bg: #f8fafc;
+  --surface-border: #d8e2eb;
+  --text-primary: #002b36;
+  --text-secondary: #586e75;
 }
 
 @layer base {
@@ -97,14 +97,26 @@ canvas {
   }
 }
 
+html.light {
+  --page-bg: #fdf6e3;
+  --surface-bg: #f8fafc;
+  --surface-border: #d8e2eb;
+  --text-primary: #002b36;
+  --text-secondary: #586e75;
+}
+
+html.dark {
+  --page-bg: #002b36;
+  --surface-bg: #0f172a;
+  --surface-border: #243240;
+  --text-primary: #e6eef8;
+  --text-secondary: #93a1a1;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--text-primary);
+  background: radial-gradient(circle at top, rgba(38, 139, 210, 0.08), transparent 35%),
+    var(--page-bg);
 }
 
 @keyframes marquee {
@@ -121,22 +133,19 @@ body {
   white-space: nowrap;
   animation: marquee 15s linear infinite;
   will-change: transform;
-  padding-right: 50px; /* Add space between the repeated text */
+  padding-right: 50px;
 }
 
-/* Add hover state to pause animation */
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Custom range input styles */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   background: transparent;
 }
 
-/* Webkit (Chrome, Safari) styles */
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -145,7 +154,7 @@ input[type="range"]::-webkit-slider-thumb {
   border-radius: 50%;
   background: var(--thumb-color, #586e75);
   cursor: pointer;
-  margin-top: -3px; /* Offset to center the thumb */
+  margin-top: -3px;
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
@@ -155,7 +164,6 @@ input[type="range"]::-webkit-slider-runnable-track {
   border-radius: 2px;
 }
 
-/* Firefox styles */
 input[type="range"]::-moz-range-thumb {
   width: 8px;
   height: 8px;
@@ -172,7 +180,6 @@ input[type="range"]::-moz-range-track {
   border-radius: 2px;
 }
 
-/* 在文件顶部添加主题过渡样式 */
 .theme-transition * {
   transition-property: color, background-color, border-color, fill, stroke,
     opacity, box-shadow, transform, filter, backdrop-filter;
@@ -180,7 +187,6 @@ input[type="range"]::-moz-range-track {
   transition-duration: 500ms;
 }
 
-/* Volume slider specific styles */
 .volume-slider {
   height: 2px !important;
 }
@@ -204,7 +210,6 @@ input[type="range"]::-moz-range-track {
   height: 2px !important;
 }
 
-/* 歌词动画效果 */
 @keyframes pulse {
   0% {
     opacity: 0.9;
@@ -238,7 +243,6 @@ input[type="range"]::-moz-range-track {
   animation: gradient-shift 3s linear infinite;
 }
 
-/* 确保歌词容器中的滚动行为受控 */
 .overscroll-behavior-y-contain {
   overscroll-behavior-y: contain;
 }

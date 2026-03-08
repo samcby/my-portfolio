@@ -1,5 +1,5 @@
 "use client";
-import React, { useTransition, useState, useEffect } from "react";
+import React, { useTransition, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import TabButton from "@/components/ui/TabButton";
@@ -7,12 +7,11 @@ import TabDataContent from "@/data/tabData";
 import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { MdWork } from "react-icons/md";
-import { GiSkills } from "react-icons/gi";
 import { FaGraduationCap, FaCertificate, FaTrophy } from "react-icons/fa";
 
 const AboutSection = () => {
   const [tab, setTab] = useState("experience");
-  const [isPending, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const { isDarkMode } = useTheme();
   const TAB_DATA = TabDataContent();
 
@@ -57,7 +56,7 @@ const AboutSection = () => {
                 passionate and energetic IC enthusiast with a solid foundation in 
                 microelectronics science. I hold a B.E. in Microelectronics Science 
                 and Engineering and am currently pursuing a M.S. in ECE at UCLA. 
-                I came from Guangzhou, 🇨🇳, and currently live in Los Angeles, California. 
+                I came from Guangzhou, 馃嚚馃嚦, and currently live in Los Angeles, California. 
                 I can speak Mandarin and English, and am relatively proficient in Cantonese, 
                 but I still need to improve. 
               </p>
@@ -69,7 +68,7 @@ const AboutSection = () => {
                   Cadence Virtuoso, Vivado, and Altium Designer
                 </span>
                 , etc.. I am also proficient in software development and writing 
-                using computer programming languages ​​like Python, Matlab, and C. 
+                using computer programming languages 鈥嬧€媗ike Python, Matlab, and C. 
                 Currently, my expertise spans multiple IC-related areas, including 
                 front-end circuit design, EDA, hardware acceleration, FPGAs, and devices.
               </p>
@@ -89,7 +88,7 @@ const AboutSection = () => {
 
               <p>
                 Besides my professional life, I like playing piano, traveling, 
-                taking photos and videos and playing games🎮. I also love cats🐱, 
+                taking photos and videos and playing games馃幃. I also love cats馃惐, 
                 although I do not have my own cat yet.
               </p>
               <p className="mt-3 text-sm italic theme-primary">
@@ -97,7 +96,7 @@ const AboutSection = () => {
                   href="/hobbies"
                   className="cursor-pointer hover:underline"
                 >
-                  Know more about my hobbies →
+                  Know more about my hobbies 鈫?
                 </Link>
               </p>
             </div>
@@ -168,9 +167,9 @@ const AboutSection = () => {
         </motion.div>
       </div>
 
-      {/* CSS变量 */}
+      {/* CSS鍙橀噺 */}
       <style jsx global>{`
-        /* 浅色主题 */
+        /* 娴呰壊涓婚 */
         .light-theme {
           --color-primary: #3b82f6;
           --color-secondary: #64748b;
@@ -184,7 +183,7 @@ const AboutSection = () => {
           --shadow: 0 4px 10px rgba(16, 24, 40, 0.06);
         }
 
-        /* 深色主题 */
+        /* 娣辫壊涓婚 */
         .dark-theme {
           --color-primary: #60a5fa;
           --color-secondary: #94a3b8;
@@ -198,7 +197,7 @@ const AboutSection = () => {
           --shadow: 0 6px 18px rgba(2, 6, 23, 0.5);
         }
 
-        /* 应用CSS变量的工具类 */
+        /* 搴旂敤CSS鍙橀噺鐨勫伐鍏风被 */
         .theme-text {
           color: var(--color-text);
         }
@@ -235,3 +234,4 @@ const AboutSection = () => {
 };
 
 export default AboutSection;
+

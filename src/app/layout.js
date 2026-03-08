@@ -5,12 +5,59 @@ import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CustomCursor from "@/components/CustomCursor";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : "http://localhost:3000");
+
 export const metadata = {
-  title: "Sam's Portfolio",
-  description: "Welcome to my portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Sam Chen | IC Design and EDA Portfolio",
+    template: "%s | Sam Chen",
+  },
+  description:
+    "Portfolio of Sam Chen, an IC design and EDA-focused engineer building research-driven hardware, analog/mixed-signal, and computer architecture projects.",
+  keywords: [
+    "Sam Chen",
+    "portfolio",
+    "IC design",
+    "EDA",
+    "hardware acceleration",
+    "computer architecture",
+    "UCLA",
+    "microelectronics",
+  ],
+  openGraph: {
+    title: "Sam Chen | IC Design and EDA Portfolio",
+    description:
+      "Research, projects, and contact information for Sam Chen's portfolio.",
+    url: "/",
+    siteName: "Sam Chen Portfolio",
+    images: [
+      {
+        url: "/images/Sam_logo_vaporwave.png",
+        width: 512,
+        height: 512,
+        alt: "Sam Chen portfolio logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sam Chen | IC Design and EDA Portfolio",
+    description:
+      "Explore Sam Chen's IC design, EDA, and hardware acceleration portfolio.",
+    images: ["/images/Sam_logo_vaporwave.png"],
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
-// 防闪烁样式
 const noFlashStyle = `
   .no-flash {
     visibility: hidden;
@@ -25,43 +72,34 @@ const noFlashStyle = `
   }
 `;
 
-// 优化的主题脚本
 const themeScript = `
   (function() {
     let html = document.documentElement;
-    
-    // 先隐藏内容防止闪烁
     html.classList.add('no-flash');
-    
+
     function setTheme(theme) {
       html.classList.remove('light', 'dark');
       html.classList.add(theme);
     }
 
-    // 获取用户之前选择的主题
     let savedTheme = localStorage.getItem('theme');
     let userChoice = localStorage.getItem('userThemeChoice');
-    
-    // 如果用户明确选择了主题
+
     if (savedTheme && userChoice === 'true') {
       setTheme(savedTheme);
     } else {
-      // 否则使用系统主题，但不保存到localStorage
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       setTheme(systemTheme);
-      // 清除任何可能残留的主题设置
       localStorage.removeItem('theme');
       localStorage.removeItem('userThemeChoice');
     }
-    
-    // 添加系统主题变化监听
+
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
       if (localStorage.getItem('userThemeChoice') !== 'true') {
         setTheme(e.matches ? 'dark' : 'light');
       }
     });
-    
-    // 移除防闪烁类
+
     requestAnimationFrame(() => {
       html.classList.remove('no-flash');
     });
@@ -75,18 +113,11 @@ export default function RootLayout({ children }) {
         <style dangerouslySetInnerHTML={{ __html: noFlashStyle }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body
-        suppressHydrationWarning
-        data-new-gr-c-s-check-loaded="14.1157.0"
-        data-gr-ext-installed=""
-        className="min-h-screen transition-all duration-300 font-sans"
-      >
+      <body suppressHydrationWarning className="min-h-screen transition-all duration-300 font-sans">
         <ThemeProvider>
-          <div className="flex flex-col min-h-screen relative bg-[#ffffff] dark:bg-[#0b1220] transition-colors duration-300">
+          <div className="flex min-h-screen flex-col relative bg-[#ffffff] transition-colors duration-300 dark:bg-[#0b1220]">
             <Navbar />
-            <main className="flex-grow transition-colors duration-300">
-              {children}
-            </main>
+            <main className="flex-grow transition-colors duration-300">{children}</main>
             <Footer />
             <CustomCursor />
           </div>
