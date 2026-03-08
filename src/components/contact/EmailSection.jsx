@@ -173,7 +173,7 @@ const EmailSection = () => {
                     className={`w-full rounded-xl border p-3 transition-colors ${
                       isDarkMode
                         ? "border-[#586e75] bg-[#073642] text-[#93a1a1] placeholder-[#657b83]"
-                        : "border-[#93a1a1] bg-[#eee8d5] text-[#002b36] placeholder-[#93a1a1]"
+                        : "border-[#d8e2eb] bg-white text-[#002b36] placeholder-[#94a3b8]"
                     }`}
                   />
                 </div>
@@ -194,7 +194,7 @@ const EmailSection = () => {
                     className={`w-full rounded-xl border p-3 transition-colors ${
                       isDarkMode
                         ? "border-[#586e75] bg-[#073642] text-[#93a1a1] placeholder-[#657b83]"
-                        : "border-[#93a1a1] bg-[#eee8d5] text-[#002b36] placeholder-[#93a1a1]"
+                        : "border-[#d8e2eb] bg-white text-[#002b36] placeholder-[#94a3b8]"
                     }`}
                   />
                 </div>
@@ -215,7 +215,7 @@ const EmailSection = () => {
                     className={`w-full rounded-xl border p-3 transition-colors ${
                       isDarkMode
                         ? "border-[#586e75] bg-[#073642] text-[#93a1a1] placeholder-[#657b83]"
-                        : "border-[#93a1a1] bg-[#eee8d5] text-[#002b36] placeholder-[#93a1a1]"
+                        : "border-[#d8e2eb] bg-white text-[#002b36] placeholder-[#94a3b8]"
                     }`}
                   />
                 </div>
@@ -236,7 +236,7 @@ const EmailSection = () => {
                     className={`w-full resize-none rounded-xl border p-3 transition-colors ${
                       isDarkMode
                         ? "border-[#586e75] bg-[#073642] text-[#93a1a1] placeholder-[#657b83]"
-                        : "border-[#93a1a1] bg-[#eee8d5] text-[#002b36] placeholder-[#93a1a1]"
+                        : "border-[#d8e2eb] bg-white text-[#002b36] placeholder-[#94a3b8]"
                     }`}
                   />
                 </div>

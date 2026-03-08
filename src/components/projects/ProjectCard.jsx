@@ -34,7 +34,7 @@ const ProjectCard = memo(
               className={`flex h-full w-full items-center justify-center text-center text-sm font-medium ${
                 isDarkMode
                   ? "bg-gradient-to-br from-[#002b36] via-[#073642] to-[#0f172a] text-[#d3e4ea]"
-                  : "bg-gradient-to-br from-[#fdf6e3] via-[#e6eef8] to-white text-[#35505c]"
+                  : "bg-gradient-to-br from-white via-[#f8fbff] to-[#eef4fb] text-[#35505c]"
               }`}
             >
               Image coming soon

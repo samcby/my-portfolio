@@ -103,7 +103,7 @@ function TimelineDynamics() {
     <div className="relative w-full overflow-visible px-4 sm:px-6 lg:px-8">
       <h3 className={`text-xl sm:text-2xl font-medium text-center mb-6 sm:mb-8 transition-colors duration-300
                     ${isDarkMode ? 'text-[#93a1a1]' : 'text-[#002b36]'}`}>
-        My Timeline 🚀
+        My Timeline 馃殌
       </h3>
       <div className="mx-auto max-w-5xl overflow-visible">
         <VerticalTimeline
@@ -141,7 +141,7 @@ function TimelineDynamics() {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* 标题区域 */}
+            {/* 鏍囬鍖哄煙 */}
             <div className={`p-5 flex flex-col items-center ${isDarkMode ? 'text-[#e6edf3]' : 'text-[#24292f]'}`}>
               <Image
                 height={80}
@@ -160,10 +160,10 @@ function TimelineDynamics() {
                 {selectedMilestone.date}
               </h4>
               
-              {/* 分隔线 */}
+              {/* 鍒嗛殧绾?*/}
               <div className={`w-full h-px my-4 ${isDarkMode ? 'bg-[#30363d]' : 'bg-[#d8dee4]'}`}></div>
               
-              {/* 详情文本区域 */}
+              {/* 璇︽儏鏂囨湰鍖哄煙 */}
               <div className="w-full">
                 <p className={`text-sm ${isDarkMode ? 'text-[#8b949e]' : 'text-[#57606a]'} whitespace-pre-line`}>
                   {selectedMilestone.details || "No additional details available."}
@@ -171,7 +171,7 @@ function TimelineDynamics() {
               </div>
             </div>
             
-            {/* 按钮区域 */}
+            {/* 鎸夐挳鍖哄煙 */}
             <div className={`p-4 ${isDarkMode ? 'bg-[#073642]' : 'bg-[#f6f8fa]'} border-t ${isDarkMode ? 'border-[#30363d]' : 'border-[#d0d7de]'}`}>
               <button
                 onClick={() => setSelectedMilestone(null)}
@@ -205,12 +205,12 @@ const TimelineItem = memo(({ item, index, onClick, isDarkMode, visible }) => {
         dateClassName={`${isDarkMode ? 'text-[#93a1a1]' : 'text-[#002b36]'} 
           transition-all duration-300 ease-in-out text-sm sm:text-base`}
         contentStyle={{
-          background: isDarkMode ? '#073642' : '#fdf6e3',
+          background: isDarkMode ? '#073642' : '#ffffff',
           color: isDarkMode ? '#93a1a1' : '#002b36',
           boxShadow: isDarkMode 
             ? `0 3px 0 #073642${isHovered ? ', 0 4px 20px rgba(0,0,0,0.3)' : ''}`
-            : `0 3px 0 #fdf6e3${isHovered ? ', 0 4px 20px rgba(0,0,0,0.1)' : ''}`,
-          border: isDarkMode ? '1px solid #586e75' : '1px solid #93a1a1',
+            : `0 3px 0 #ffffff${isHovered ? ', 0 4px 20px rgba(15,23,42,0.08)' : ''}`,
+          border: isDarkMode ? '1px solid #586e75' : '1px solid #d8e2eb',
           transform: isHovered ? 'scale(1.02)' : 'scale(1)',
           transition: 'all 0.3s ease-in-out',
           padding: '1.25rem',
@@ -218,7 +218,7 @@ const TimelineItem = memo(({ item, index, onClick, isDarkMode, visible }) => {
           cursor: 'pointer',
         }}
         contentArrowStyle={{
-          borderRight: isDarkMode ? '7px solid #073642' : '7px solid #fdf6e3',
+          borderRight: isDarkMode ? '7px solid #073642' : '7px solid #ffffff',
           transition: 'all 0.3s ease-in-out',
         }}
         iconStyle={{

@@ -34,7 +34,7 @@ const HeroModel = () => {
     <div className="col-span-12 flex min-h-[300px] w-full items-center justify-center sm:col-span-6 sm:min-h-0 lg:col-span-5">
       <div
         className={`relative h-[250px] w-[250px] rounded-full sm:h-[250px] sm:w-[250px] lg:h-[400px] lg:w-[400px] ${
-          isDarkMode ? "bg-[#073642]" : "bg-[#fdf6e3]"
+          isDarkMode ? "bg-[#073642]" : "bg-white border border-[#d8e2eb]"
         }`}
       >
         <div className="absolute inset-0 overflow-hidden rounded-full">

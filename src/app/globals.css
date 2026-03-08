@@ -70,8 +70,8 @@ canvas {
   --background-end-rgb: 255, 255, 255;
   --navbar-height: 4.5rem;
   --navbar-height-mobile: 4rem;
-  --page-bg: #fdf6e3;
-  --surface-bg: #f8fafc;
+  --page-bg: #ffffff;
+  --surface-bg: #f8fbff;
   --surface-border: #d8e2eb;
   --text-primary: #002b36;
   --text-secondary: #586e75;
@@ -98,8 +98,8 @@ canvas {
 }
 
 html.light {
-  --page-bg: #fdf6e3;
-  --surface-bg: #f8fafc;
+  --page-bg: #ffffff;
+  --surface-bg: #f8fbff;
   --surface-border: #d8e2eb;
   --text-primary: #002b36;
   --text-secondary: #586e75;
@@ -115,7 +115,8 @@ html.dark {
 
 body {
   color: var(--text-primary);
-  background: radial-gradient(circle at top, rgba(38, 139, 210, 0.08), transparent 35%),
+  background: radial-gradient(circle at top, rgba(38, 139, 210, 0.05), transparent 32%),
+    linear-gradient(to bottom, rgba(248, 251, 255, 0.92), rgba(255, 255, 255, 1)),
     var(--page-bg);
 }
 

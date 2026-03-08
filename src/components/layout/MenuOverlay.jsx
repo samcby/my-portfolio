@@ -9,7 +9,7 @@ const MenuOverlay = ({ links }) => {
 
   return (
     <ul className={`flex flex-col py-4 items-center transition-colors duration-300
-                   ${isDarkMode ? 'bg-[#002b36]' : 'bg-[#fdf6e3]'}`}>
+                   ${isDarkMode ? 'bg-[#002b36]' : 'bg-white'}`}>
       {links.map((link, index) => (
         <li key={index}>
           <NavLink href={link.path} title={link.title} />

@@ -16,7 +16,7 @@ const Interests = ({ containerRef }) => {
   const isInitializedRef = useRef(false);
   const previousDimensionsRef = useRef({ width: 0, height: 0 });
   
-  // 防抖函数
+  // 闂冨弶濮堥崙鑺ユ殶
   const debounce = useCallback((func, wait) => {
     let timeout;
     return function executedFunction(...args) {
@@ -29,7 +29,7 @@ const Interests = ({ containerRef }) => {
     };
   }, []);
 
-  // 检测是否为移动设备
+  // 濡偓濞村妲搁崥锔胯礋缁夎濮╃拋鎯ь槵
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -40,7 +40,7 @@ const Interests = ({ containerRef }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // 更新容器尺寸
+  // 閺囧瓨鏌婄€圭懓娅掔亸鍝勵嚟
   useEffect(() => {
     const updateDimensions = () => {
       if (containerRef.current) {
@@ -63,7 +63,7 @@ const Interests = ({ containerRef }) => {
     return () => window.removeEventListener('resize', debouncedUpdateDimensions);
   }, [containerRef, debounce]);
 
-  // 处理窗口位置更新
+  // 婢跺嫮鎮婄粣妤€褰涙担宥囩枂閺囧瓨鏌?
   useEffect(() => {
     if (!windows || !containerDimensions.width || !containerDimensions.height) return;
 
@@ -77,7 +77,7 @@ const Interests = ({ containerRef }) => {
       const scaleX = containerDimensions.width / prevWidth;
       const scaleY = containerDimensions.height / prevHeight;
       
-      // 窗口大小 - 移动端280px，桌面端300px
+      // 缁愭褰涙径褍鐨?- 缁夎濮╃粩?80px閿涘本顢戦棃銏㈩伂300px
       const windowWidth = window.innerWidth < 480 ? 280 : 300;
       const windowHeight = 300;
 
@@ -95,18 +95,18 @@ const Interests = ({ containerRef }) => {
     }
   }, [containerDimensions]);
 
-  // 初始化窗口位置
+  // 閸掓繂顫愰崠鏍崶閸欙絼缍呯純?
   useEffect(() => {
     if (isInitializedRef.current || !containerDimensions.width || !containerDimensions.height) return;
 
-    // 显示所有窗口，不再只在移动端显示部分窗口
+    // 閺勫墽銇氶幍鈧張澶岀崶閸欙綇绱濇稉宥呭晙閸欘亜婀粔璇插З缁旑垱妯夌粈娲劥閸掑棛鐛ラ崣?
     const windowIds = ['videography', 'music', 'games', 'travel', 'Personal Media', 'movie', 'volunteer'];
     
     setWindows(
       windowIds.map((id, index) => ({
         ...getInitialPosition(index, windowIds.length, containerDimensions),
         id,
-        // 移动端设置较小的初始速度，减少窗口移动
+        // 缁夎濮╃粩顖濐啎缂冾喛绶濈亸蹇曟畱閸掓繂顫愰柅鐔峰閿涘苯鍣虹亸鎴犵崶閸欙絿些閸?
         velocity: {
           x: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.5),
           y: (Math.random() - 0.5) * (isMobile ? 0.2 : 0.5)
@@ -118,7 +118,7 @@ const Interests = ({ containerRef }) => {
     previousDimensionsRef.current = containerDimensions;
   }, [containerDimensions, isMobile]);
 
-  // 处理窗口移动和碰撞
+  // 婢跺嫮鎮婄粣妤€褰涚粔璇插З閸滃瞼顫幘?
   useEffect(() => {
     if (!windows || !containerDimensions.width || !containerDimensions.height) return;
 
@@ -127,18 +127,18 @@ const Interests = ({ containerRef }) => {
     const windowHeight = 300;
 
     const updatePositions = () => {
-      // 在移动设备上减慢动画
+      // 閸︺劎些閸斻劏顔曟径鍥︾瑐閸戝繑鍙冮崝銊ф暰
       const speedFactor = isMobile ? 0.6 : 1;
       
       setWindows(prevWindows => 
         prevWindows.map(win => {
           if (win.isDragging || !win.isVisible) return win;
 
-          // 应用速度因子
+          // 鎼存梻鏁ら柅鐔峰閸ョ姴鐡?
           const adjustedVelocityX = win.velocity.x * speedFactor;
           const adjustedVelocityY = win.velocity.y * speedFactor;
 
-          // 计算窗口的新位置（四个边界）
+          // 鐠侊紕鐣荤粣妤€褰涢惃鍕煀娴ｅ秶鐤嗛敍鍫濇磽娑擃亣绔熼悾宀嬬礆
           const newLeft = win.position.x + adjustedVelocityX;
           const newRight = newLeft + windowWidth;
           const newTop = win.position.y + adjustedVelocityY;
@@ -147,20 +147,20 @@ const Interests = ({ containerRef }) => {
           let newVelocityX = win.velocity.x;
           let newVelocityY = win.velocity.y;
 
-          // 水平方向的碰撞检测（左右边界）
+          // 濮樻潙閽╅弬鐟版倻閻ㄥ嫮顫幘鐐搭梾濞村绱欏锕€褰告潏鍦櫕閿?
           if (newLeft <= 0 || newRight >= containerDimensions.width) {
             newVelocityX = -win.velocity.x;
           }
           
-          // 垂直方向的碰撞检测（上下边界）
-          // navbar高度为64px，footer padding为16px
-          const minTop = 0; // navbar的下边界对应容器的0位置
-          const maxBottom = containerDimensions.height - 16; // 减去footer padding
+          // 閸ㄥ倻娲块弬鐟版倻閻ㄥ嫮顫幘鐐搭梾濞村绱欐稉濠佺瑓鏉堝湱鏅敍?
+          // navbar妤傛ê瀹虫稉?4px閿涘畺ooter padding娑?6px
+          const minTop = 0; // navbar閻ㄥ嫪绗呮潏鍦櫕鐎电懓绨茬€圭懓娅掗惃?娴ｅ秶鐤?
+          const maxBottom = containerDimensions.height - 16; // 閸戝繐骞揻ooter padding
           if (newTop <= minTop || newBottom >= maxBottom) {
             newVelocityY = -win.velocity.y;
           }
 
-          // 确保窗口完全在可视区域内
+          // 绾喕绻氱粣妤€褰涚€瑰苯鍙忛崷銊ュ讲鐟欏棗灏崺鐔峰敶
           const boundedX = Math.max(0, Math.min(newLeft, containerDimensions.width - windowWidth));
           const boundedY = Math.max(minTop, Math.min(newTop, maxBottom - windowHeight));
 
@@ -202,13 +202,13 @@ const Interests = ({ containerRef }) => {
   }, []);
 
   const handleDrag = useCallback((id, data) => {
-    // 根据屏幕尺寸确定窗口大小
+    // 閺嶈宓佺仦蹇撶鐏忓搫顕涵顔肩暰缁愭褰涙径褍鐨?
     const isVerySmall = typeof window !== 'undefined' && window.innerWidth < 480;
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const windowWidth = isVerySmall ? 200 : isMobile ? 240 : 300;
     const windowHeight = 300;
     
-    const maxBottom = containerDimensions.height - 16; // 减去footer padding
+    const maxBottom = containerDimensions.height - 16; // 閸戝繐骞揻ooter padding
     
     setWindows(prevWindows =>
       prevWindows.map(win =>
@@ -233,7 +233,7 @@ const Interests = ({ containerRef }) => {
     );
   }, []);
 
-  // 添加重置功能，让所有窗口重新显示
+  // 濞ｈ濮為柌宥囩枂閸旂喕鍏橀敍宀冾唨閹碘偓閺堝鐛ラ崣锝夊櫢閺傜増妯夌粈?
   const handleReset = useCallback(() => {
     isInitializedRef.current = false;
     setWindows(null);
@@ -250,13 +250,13 @@ const Interests = ({ containerRef }) => {
         relative 
         transition-colors 
         duration-300
-        ${isDarkMode ? 'bg-[#002b36]' : 'bg-[#fdf6e3]'}
+        ${isDarkMode ? 'bg-[#002b36]' : 'bg-white'}
       `}
       style={{
         height: `${containerDimensions.height}px`,
       }}
     >
-      {/* 移动端添加重置按钮 */}
+      {/* 缁夎濮╃粩顖涘潑閸旂娀鍣哥純顔藉瘻闁?*/}
       {isMobile && (
         <button 
           onClick={handleReset}
@@ -267,7 +267,7 @@ const Interests = ({ containerRef }) => {
             rounded-md
             ${isDarkMode 
               ? 'bg-[#073642] text-[#93a1a1] hover:bg-[#114454]' 
-              : 'bg-[#eee8d5] text-[#586e75] hover:bg-[#e0d6bc]'
+              : 'bg-[#f8fbff] text-[#586e75] hover:bg-[#eef4fb]'
             }
             transition-colors duration-200
           `}
@@ -288,7 +288,7 @@ const Interests = ({ containerRef }) => {
             onDrag={(e, data) => handleDrag(window.id, data)}
             position={window.position}
             onClose={() => handleClose(window.id)}
-            className={`${isDarkMode ? 'bg-[#073642] text-[#93a1a1]' : 'bg-[#eee8d5] text-[#586e75]'}`}
+            className={`${isDarkMode ? 'bg-[#073642] text-[#93a1a1]' : 'bg-[#f8fbff] text-[#586e75] border border-[#d8e2eb]'}`}
           >
             <WindowContent id={window.id} />
           </DraggableWindow>

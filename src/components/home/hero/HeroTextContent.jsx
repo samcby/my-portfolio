@@ -32,7 +32,7 @@ const HeroTextContent = () => {
             1000,
             "IC Designer",
             1000,
-            "EDA Researcher",
+            "IC Researcher",
             1000,
             "Hardware Enthusiast",
             1000,
@@ -47,8 +47,8 @@ const HeroTextContent = () => {
           isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"
         }`}
       >
-        I build research-driven hardware and IC design projects across EDA,
-        mixed-signal systems, and computer architecture.
+        I build research-driven hardware and IC design projects across circuit
+        design, hardware acceleration, and computer architecture.
       </p>
       <div className="flex flex-col items-center gap-3 sm:items-start">
         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
@@ -89,7 +89,7 @@ const HeroTextContent = () => {
         <div className="flex flex-wrap justify-center gap-3 text-xs sm:justify-start sm:text-sm">
           {[
             "M.S. ECE @ UCLA",
-            "EDA + Mixed-Signal",
+            "IC Design",
             "Hardware Acceleration",
           ].map((item) => (
             <span
