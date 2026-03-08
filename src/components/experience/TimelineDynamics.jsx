@@ -103,8 +103,7 @@ function TimelineDynamics() {
     <div className="relative w-full overflow-visible px-4 sm:px-6 lg:px-8">
       <h3 className={`text-xl sm:text-2xl font-medium text-center mb-6 sm:mb-8 transition-colors duration-300
                     ${isDarkMode ? 'text-[#93a1a1]' : 'text-[#002b36]'}`}>
-        My Timeline 馃殌
-      </h3>
+        My Timeline</h3>
       <div className="mx-auto max-w-5xl overflow-visible">
         <VerticalTimeline
           animate={true}
@@ -141,7 +140,7 @@ function TimelineDynamics() {
             }`}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* 鏍囬鍖哄煙 */}
+            {/* 閺嶅洭顣介崠鍝勭厵 */}
             <div className={`p-5 flex flex-col items-center ${isDarkMode ? 'text-[#e6edf3]' : 'text-[#24292f]'}`}>
               <Image
                 height={80}
@@ -160,10 +159,10 @@ function TimelineDynamics() {
                 {selectedMilestone.date}
               </h4>
               
-              {/* 鍒嗛殧绾?*/}
+              {/* 閸掑棝娈х痪?*/}
               <div className={`w-full h-px my-4 ${isDarkMode ? 'bg-[#30363d]' : 'bg-[#d8dee4]'}`}></div>
               
-              {/* 璇︽儏鏂囨湰鍖哄煙 */}
+              {/* 鐠囷附鍎忛弬鍥ㄦ拱閸栧搫鐓?*/}
               <div className="w-full">
                 <p className={`text-sm ${isDarkMode ? 'text-[#8b949e]' : 'text-[#57606a]'} whitespace-pre-line`}>
                   {selectedMilestone.details || "No additional details available."}
@@ -171,7 +170,7 @@ function TimelineDynamics() {
               </div>
             </div>
             
-            {/* 鎸夐挳鍖哄煙 */}
+            {/* 閹稿鎸抽崠鍝勭厵 */}
             <div className={`p-4 ${isDarkMode ? 'bg-[#073642]' : 'bg-[#f6f8fa]'} border-t ${isDarkMode ? 'border-[#30363d]' : 'border-[#d0d7de]'}`}>
               <button
                 onClick={() => setSelectedMilestone(null)}
