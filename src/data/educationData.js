@@ -35,7 +35,22 @@ export const educationData = [
         name: "ECE 189 - Advanced Honors Seminars (Related to ECE M116C)",
         achievement:
           "Achieved A",
-      },      
+      },
+      {
+        name: "CS 251A - Advanced Computer Architecture",
+        achievement:
+          "Achieved A",
+      },
+      {
+        name: "ECE 201A - VLSI Design Automation",
+        achievement:
+          "Achieved A",
+      },
+      {
+        name: "ECE 247A - Neural Networks and Deep Learning",
+        achievement:
+          "Achieved A",
+      },
     ],
   },
   {
