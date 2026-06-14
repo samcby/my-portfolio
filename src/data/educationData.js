@@ -51,6 +51,12 @@ export const educationData = [
         achievement:
           "Achieved A",
       },
+      {
+        name: "ECE 247B - Neural Networks and Deep Learning II",
+        achievement:
+          "Achieved A",
+      },
+      "CS 133 - Parallel and Distributed Computing",
     ],
   },
   {
@@ -96,7 +102,7 @@ export const educationData = [
     ],
     researchExperience: [
       {
-        title: "Research Assistant - Research on Optimization of 4-bit Absolute Value Detector",
+        title: "Research Assistant - Research on Two-dimensional Materials and Luminescence",
         supervisor: "Prof. Shasha Li",
         period: "10/2022 - 01/2023",
         description: [

@@ -380,6 +380,7 @@ const TabDataContent = () => {
                          ${isDarkMode ? "text-[#ADB7BE]" : "text-[#586e75]"}`}
           >
             <li>Second-class Scholarship for Academic Excellence of SYSU</li>
+            <li>Outstanding Undergraduate Thesis (School Level)</li>
           </ul>
         </div>
       ),

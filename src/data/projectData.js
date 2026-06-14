@@ -46,7 +46,7 @@ const PROJECT_DATA = [
     title: "Decoding QWERTY Keystrokes from sEMG",
     description:
       "Studied character-level text decoding from forearm sEMG signals by comparing multiple model families and data ablations on Meta's emg2qwerty setup.",
-    image: "",
+    image: "/images/projects/EMG.png",
     tag: ["All", "MACHINE LEARNING"],
     stack: ["PyTorch", "PyTorch Lightning", "sEMG"],
     year: 2026,
@@ -179,8 +179,9 @@ const PROJECT_DATA = [
     stack: ["Python", "Verilog", "FPGA"],
     year: 2023,
     featured: false,
-    gitUrl: "",
-    linkLabel: "Project summary",
+    gitUrl:
+      "https://github.com/samcby/Hardware-Design-and-Implementation-of-CNN-Computing-Kernel",
+    linkLabel: "View repository",
     previewUrl: "/",
   },
   {
@@ -191,7 +192,7 @@ const PROJECT_DATA = [
     image: "/images/projects/singleriscv.jpg",
     tag: ["All", "COMPUTER ARCHITECTURE"],
     stack: ["C++", "RISC-V", "CPU Design"],
-    year: 2023,
+    year: 2025,
     featured: false,
     gitUrl: "https://github.com/samcby/Simple-Single-Cycle-RISC-V-CPU",
     linkLabel: "View repository",
