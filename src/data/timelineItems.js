@@ -1,5 +1,15 @@
 const TIMELINE_ITEMS = [
   {
+    date: "Jan 2026 - Dec 2026",
+    title: "MNIST CNN NPU Design and Verification (Tape Out)",
+    location: "UCLA | Los Angeles, CA",
+    description:
+      "Building a compact MNIST CNN inference chip and progressing through RTL, verification, backend implementation, and tape-out signoff in a course chip-design flow.",
+    logo: "https://p.ipic.vip/q1ysgx.png",
+    details:
+      "This ongoing UCLA tape-out project implements a resource-conscious CNN NPU for MNIST digit recognition in a TSMC 180 nm flow, covering algorithm mapping, SystemVerilog RTL, verification, Cadence Genus synthesis, Innovus place-and-route, and Calibre DRC/LVS. The design uses a command-streaming interface and is being developed toward full course tape-out completion while balancing physical constraints, timing, and verification coverage.",
+  },
+  {
     date: "Jan 2026 - Mar 2026",
     title: "Decoding QWERTY Keystrokes from sEMG",
     location: "UCLA | Los Angeles, CA",

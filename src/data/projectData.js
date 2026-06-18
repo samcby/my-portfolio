@@ -1,6 +1,20 @@
 const PROJECT_DATA = [
   {
     id: 1,
+    title: "MNIST CNN NPU Design and Verification (Tape Out)",
+    description:
+      "Designed a compact MNIST CNN inference chip and carried it through RTL verification, synthesis, place-and-route, and tape-out checks in a TSMC 180 nm flow.",
+    image: "/images/projects/tapeout.png",
+    tag: ["All", "IC DESIGN", "HARDWARE ACC"],
+    stack: ["SystemVerilog", "Cadence Genus", "Cadence Innovus", "Calibre"],
+    year: 2026,
+    featured: true,
+    gitUrl: "",
+    linkLabel: "Project summary",
+    previewUrl: "/",
+  },
+  {
+    id: 2,
     title: "Microbenchmark Analysis with gem5",
     description:
       "Analyzed how out-of-order execution, issue width, cache hierarchy, and clock frequency influence performance across a set of microbenchmarks in gem5.",
@@ -14,7 +28,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 2,
+    id: 3,
     title: "M4 Accelerator in gem5 x86",
     description:
       "Extended gem5's x86 ISA with a custom 4x4 tile matrix-multiplication accelerator, including custom instructions, timing-aware memory behavior, and a benchmark for tiled GEMM.",
@@ -28,7 +42,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 3,
+    id: 4,
     title: "LRU Approximations and Thrash-Resistant Cache Policies in gem5",
     description:
       "Implemented NMRU in gem5 and evaluated lightweight LRU approximations and thrash-resistant cache policies on SPEC CPU2017 and synthetic streaming workloads.",
@@ -42,7 +56,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Decoding QWERTY Keystrokes from sEMG",
     description:
       "Studied character-level text decoding from forearm sEMG signals by comparing multiple model families and data ablations on Meta's emg2qwerty setup.",
@@ -56,7 +70,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Accelerating Sparse Kernels via Near-Data Processing in gem5",
     description:
       "Built a minimal processing-in-memory mechanism in gem5 to offload sparse accumulation updates and measured its performance and data-movement tradeoffs against a CPU baseline.",
@@ -71,7 +85,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 6,
+    id: 7,
     title: "Design of a Complex Out-of-Order RISC-V Processor",
     description:
       "Designed and implemented a complex out-of-order RISC-V processor in SystemVerilog with renaming, dispatch, reservation stations, and advanced execution flow support.",
@@ -85,7 +99,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 7,
+    id: 8,
     title: "AI Generation for Analog and Mixed-Signal Circuits",
     description:
       "Used LLMs and Bayesian optimization to design and optimize analog circuits such as op-amps and ADCs. The work was co-authored into a paper accepted by ACM TODAES.",
@@ -99,7 +113,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 8,
+    id: 9,
     title: "Benchmarking LLMs for AMS Circuits",
     description:
       "Built a comprehensive benchmark and evaluation system for analog and mixed-signal reasoning by systematically organizing textbook-level chip design knowledge and research tasks.",
@@ -114,7 +128,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 9,
+    id: 10,
     title: "Accelerating Diffusion Channel Decoding",
     description:
       "Applied diffusion models and Transformers to channel decoding, combining distillation and dynamic compression to improve performance while reducing complexity.",
@@ -128,7 +142,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 10,
+    id: 11,
     title: "Intelligent Control Chip Based on Robei EDA",
     description:
       "Designed a robot control system with Robei EDA tools and FPGA hardware, enabling gripping, transfer, motion, obstacle avoidance, terrain traversal, and remote control.",
@@ -142,7 +156,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 11,
+    id: 12,
     title: "Two-Dimensional Materials and Luminescence Research",
     description:
       "Led a team studying luminescence in two-dimensional materials and co-authored a paper based on the project's results.",
@@ -156,7 +170,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 12,
+    id: 13,
     title: "Optimization of a 4-bit Absolute Value Detector",
     description:
       "Reconstructed the carry block and optimized transistor sizing and supply voltage, reducing power consumption by 68.16% while preserving speed requirements.",
@@ -170,7 +184,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 13,
+    id: 14,
     title: "CNN Hardware Acceleration on FPGA",
     description:
       "Implemented CNN acceleration in Python and Verilog on the EGO1 FPGA with hierarchical channel parallelism and custom I/O buffering for efficient deployment.",
@@ -185,7 +199,7 @@ const PROJECT_DATA = [
     previewUrl: "/",
   },
   {
-    id: 14,
+    id: 15,
     title: "Single-Cycle RISC-V CPU Design",
     description:
       "Built a single-cycle RISC-V CPU in C++ implementing the core instruction path, registers, memory, and control logic for the proposed ISA.",

@@ -56,7 +56,11 @@ export const educationData = [
         achievement:
           "Achieved A",
       },
-      "CS 133 - Parallel and Distributed Computing",
+      {
+        name: "CS 133 - Parallel and Distributed Computing",
+        achievement:
+          "Achieved A+",
+      },
     ],
   },
   {

@@ -53,7 +53,7 @@ const HeroTextContent = () => {
       <div className="flex flex-col items-center gap-3 sm:items-start">
         <div className="mt-3 flex flex-col gap-3 sm:flex-row">
           <Link
-            href="https://drive.google.com/file/d/1aMRk6cMOr5sgWcwZOsVDEXbRZ4Pq6Poo/view?usp=sharing"
+            href="https://drive.google.com/file/d/1i307tAClEGwEdmHXx7f_vXjTiObBohev/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-[#268bd2] px-6 py-3 text-base font-semibold text-white transition-all duration-300 hover:bg-[#2aa198] sm:text-lg"
