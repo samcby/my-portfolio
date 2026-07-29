@@ -2,10 +2,9 @@
 import Image from "next/image";
 import TimelineDynamics from "@/components/experience/TimelineDynamics";
 import { useTheme } from "@/context/ThemeContext";
-import SkillCircle from "@/components/skills/SkillCircle";
 import { educationData } from "@/data/educationData";
 import { FaGraduationCap, FaCalendarAlt, FaBook } from "react-icons/fa";
-import { BsAward, BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import { GiAchievement } from "react-icons/gi";
 
 const cardStyle = (isDarkMode) => `
@@ -35,15 +34,6 @@ const TabDataContent = () => {
         </div>
       ),
     },
-/*     {
-      title: "Skills",
-      id: "skills",
-      content: (
-        <div className="flex justify-center items-center w-full">
-          <SkillCircle />
-        </div>
-      ),
-    }, */
     {
       title: "Education",
       id: "education",
@@ -184,7 +174,7 @@ const TabDataContent = () => {
                   </div>
                 </div>
 
-                {edu.teachingExperience && (
+                {edu.teachingExperience?.length > 0 && (
                   <div className="mt-6">
                     <div className="flex items-center gap-2 mb-2">
                       <GiAchievement
@@ -248,7 +238,7 @@ const TabDataContent = () => {
                   </div>
                 )}
 
-                {edu.researchExperience && (
+                {edu.researchExperience?.length > 0 && (
                   <div className="mt-6">
                     <div className="flex items-center gap-2 mb-2">
                       <BsSearch
@@ -352,20 +342,6 @@ const TabDataContent = () => {
               </div>
             ))}
               </div>
-        </div>
-      ),
-    },
-    {
-      title: "Certifications",
-      id: "certifications",
-      content: (
-        <div className="flex justify-center items-center">
-          <ul
-            className={`list-disc pl-4 flex flex-col items-start leading-tight
-                         ${isDarkMode ? "text-[#ADB7BE]" : "text-[#586e75]"}`}
-          >
-            <li></li>
-          </ul>
         </div>
       ),
     },

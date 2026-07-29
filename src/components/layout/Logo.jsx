@@ -12,7 +12,7 @@ const Logo = ({ isFooter = false }) => {
       <div className="relative w-16 h-16 md:w-20 md:h-20">
         <Image
           src="/images/Sam_logo_vaporwave.png"
-          alt="Logo"
+          alt={isFooter ? "Sam Chen" : ""}
           fill
           sizes="(max-width: 768px) 64px, 80px"
           style={{ objectFit: "contain" }}

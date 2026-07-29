@@ -21,7 +21,7 @@ const Footer = () => {
         {/* Footer Text */}
         <p className={`text-sm text-center md:text-left transition-colors duration-300
                       ${isDarkMode ? 'text-[#839496]' : 'text-[#586e75]'}`}>
-          © {new Date().getFullYear()} All rights reserved.
+          &copy; {new Date().getFullYear()} Sam Chen. All rights reserved.
         </p>
       </div>
     </footer>

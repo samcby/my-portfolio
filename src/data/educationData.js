@@ -1,24 +1,7 @@
-"use client";
-
-// Constants for responsibilities
-const RESPONSIBILITIES = {
-  READER: "Grading assignments and providing feedback to students",
-  TA: "Leading discussion sections, holding office hours, and grading assignments",
-  TEST_SCRIPT_DEV:
-    "Developing and maintaining test scripts for course assignments",
-  WEB_DEV: "Developing and maintaining course web infrastructure",
-};
-
-// Helper function to validate teaching experience data
-const validateTeachingExperience = (exp) => {
-  const requiredFields = ["course", "role", "period", "responsibilities"];
-  return requiredFields.every((field) => exp[field] !== undefined);
-};
-
 export const educationData = [
   {
     degree: "M.S. in Electrical and Computer Engineering",
-    period: "09/2025 - TBD",
+    period: "09/2025 - Expected 2027",
     gpa: "4.0/4.0",
     courses: [
       {
@@ -136,11 +119,11 @@ export const educationData = [
         period: "01/2024 - 07/2024",
         description: [
           "Implemented a Bluetooth-controlled robotic car and arm system through hardware-software co-design",
-          "Wrote Verilog for FPGA through Robei’s EDA(a tool without any IP cores) and developed a C# host program",
-          "Achieving smooth, precise control via PID algorithms",
+          "Wrote Verilog for FPGA through Robei's EDA and developed a C# host program",
+          "Achieved smooth, precise control using PID algorithms",
         ],
         technologies: {
-         "Design Tools": ["Verilog", "Python", "Matlab", "Xilinx Vivado", "Robei EDA"], 
+         "Design Tools": ["Verilog", "Python", "MATLAB", "Xilinx Vivado", "Robei EDA"],
         },
       },      
       {
@@ -153,19 +136,10 @@ export const educationData = [
           "The results were formed into an undergraduate thesis and won the school-level Outstanding Thesis Award",        
         ],
         technologies: {
-         "Design Tools": ["Pytorch", "Python", "Overleaf"], 
+         "Design Tools": ["PyTorch", "Python", "Overleaf"],
         },
       },
     ],
-    teachingExperience: [
-      {},
-    ].map((exp) => {
-      if (!validateTeachingExperience(exp)) {
-        console.warn(
-          `Invalid teaching experience data: ${JSON.stringify(exp)}`
-        );
-      }
-      return exp;
-    }),
+    teachingExperience: [],
   },
 ];

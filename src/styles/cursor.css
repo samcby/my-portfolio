@@ -4,8 +4,10 @@ html {
 }
 
 /* 基本指针 */
-* {
-  cursor: none !important;
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 /* 创建自定义指针覆盖层 */
@@ -14,16 +16,27 @@ html {
   width: var(--cursor-size);
   height: var(--cursor-size);
   pointer-events: none;
+  opacity: 0;
   z-index: 9999;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   transform-origin: 5px 5px;
   transition: transform 0.05s ease, background-image 0.1s ease, opacity 0.2s ease;
   transform: scale(1.2);
-  will-change: left, top, transform;
+  will-change: transform;
   /* 添加略微偏移使指针更精确 */
   margin-left: -4px;
   margin-top: -4px;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
 }
 
 /* 指针悬停状态微动画 */
@@ -66,4 +79,4 @@ html {
   to {
     transform: scale(1.2) rotate(360deg);
   }
-} 
+}

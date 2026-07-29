@@ -7,7 +7,7 @@ import TabDataContent from "@/data/tabData";
 import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { MdWork } from "react-icons/md";
-import { FaGraduationCap, FaCertificate, FaTrophy } from "react-icons/fa";
+import { FaGraduationCap, FaTrophy } from "react-icons/fa";
 
 const AboutSection = () => {
   const [tab, setTab] = useState("experience");
@@ -41,7 +41,7 @@ const AboutSection = () => {
                 height={300}
                 priority
                 className="w-full h-auto rounded-xl transition-transform duration-300 hover:scale-105"
-                unoptimized
+                sizes="(max-width: 768px) 300px, 25vw"
               />
             </div>
           </div>
@@ -52,32 +52,27 @@ const AboutSection = () => {
 
             <div className="space-y-4 text-sm sm:text-base lg:text-lg text-left leading-relaxed">
               <p>
-                I am <span className="font-semibold">Sam Chen</span>, a 
-                passionate and energetic IC enthusiast with a solid foundation in 
-                microelectronics science. I hold a B.E. in Microelectronics Science 
-                and Engineering and am currently pursuing a M.S. in ECE at UCLA. 
-                I came from Guangzhou, and currently live in Los Angeles, California. 
-                I can speak Mandarin and English, and am relatively proficient in Cantonese, 
-                but I still need to improve. 
+                I am <span className="font-semibold">Sam Chen</span>, an IC
+                design and computer architecture engineer currently pursuing an
+                M.S. in Electrical and Computer Engineering at UCLA. I earned
+                my B.E. in Microelectronics Science and Engineering and now
+                live in Los Angeles after growing up in Guangzhou.
               </p>
 
               <p>
-                I specialize in IC design and computer architecture, including 
-                analog, digital, architecture and hardware acceleration, using tools like{" "}
+                My work spans analog and digital IC design, computer
+                architecture, EDA, and hardware acceleration. I use tools such as{" "}
                 <span className="font-medium theme-primary">
-                  Cadence Virtuoso, Genus, Innovus, Vivado, and Gem5
+                  Cadence Virtuoso, Genus, Innovus, Vivado, and gem5
                 </span>
-                , etc.. I am also proficient in software development and writing 
-                using computer programming languages like Python, Matlab, and C++. 
-                Currently, my expertise spans multiple IC-related areas, including 
-                front-end circuit design, EDA, hardware acceleration, FPGAs, and devices.
+                , along with Python, MATLAB, C++, SystemVerilog, and Verilog for
+                research and implementation.
               </p>
 
               <p>
-                I have had relevant research experience in different fields with 
-                different professors at{" "}
-                <span className="font-semibold theme-secondary">UCLA and SYSU</span>{" "}
-                I also have practical internship experience at
+                I have conducted research with faculty at{" "}
+                <span className="font-semibold theme-secondary">UCLA and SYSU</span>
+                {" "}and gained practical internship experience at
                 <span className="font-semibold theme-accent">
                   {" "}
                   BTD and the Guangdong Greater Bay Area Institute of 
@@ -87,16 +82,16 @@ const AboutSection = () => {
               </p>
 
               <p>
-                Besides my professional life, I like playing piano, traveling, 
-                taking photos and videos and playing games. I also love cats, 
-                although I do not have my own cat yet.
+                Outside engineering, I enjoy playing piano, traveling, making
+                photos and videos, watching movies, playing games, and
+                volunteering with younger students.
               </p>
               <p className="mt-3 text-sm italic theme-primary">
                 <Link
                   href="/hobbies"
                   className="cursor-pointer hover:underline"
                 >
-                  Know more about my hobbies?
+                  Explore my hobbies
                 </Link>
               </p>
             </div>
@@ -107,8 +102,14 @@ const AboutSection = () => {
         <div className="w-full h-px my-8 theme-divider"></div>
 
         {/* Tab buttons */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 w-full">
+        <div
+          role="tablist"
+          aria-label="About Sam Chen"
+          className="flex w-full flex-wrap justify-center gap-2 sm:gap-4"
+        >
           <TabButton
+            id="experience-tab"
+            controls="experience-panel"
             selectTab={() => handleTabChange("experience")}
             active={tab === "experience"}
           >
@@ -127,6 +128,8 @@ const AboutSection = () => {
             </span>
           </TabButton> */}
           <TabButton
+            id="education-tab"
+            controls="education-panel"
             selectTab={() => handleTabChange("education")}
             active={tab === "education"}
           >
@@ -136,15 +139,8 @@ const AboutSection = () => {
             </span>
           </TabButton>
           <TabButton
-            selectTab={() => handleTabChange("certifications")}
-            active={tab === "certifications"}
-          >
-            <span className="flex items-center gap-1.5">
-              <FaCertificate className="text-lg" />
-              <span>Certifications</span>
-            </span>
-          </TabButton>
-          <TabButton
+            id="awards-tab"
+            controls="awards-panel"
             selectTab={() => handleTabChange("awards")}
             active={tab === "awards"}
           >
@@ -157,6 +153,10 @@ const AboutSection = () => {
 
         {/* Tab content with card style */}
         <motion.div
+          id={`${tab}-panel`}
+          role="tabpanel"
+          aria-labelledby={`${tab}-tab`}
+          tabIndex={0}
           className="mt-6 sm:mt-8 w-full p-4 sm:p-6 rounded-xl theme-card theme-shadow theme-border border"
           key={tab}
           initial={{ opacity: 0, y: 10 }}

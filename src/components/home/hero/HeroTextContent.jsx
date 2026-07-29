@@ -1,46 +1,51 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useTheme } from "@/context/ThemeContext";
 
 const HeroTextContent = () => {
   const { isDarkMode } = useTheme();
-  const [showTooltip, setShowTooltip] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="col-span-12 w-full text-center sm:col-span-6 sm:text-left lg:col-span-7"
+      className="col-span-1 min-w-0 w-full text-center sm:col-span-6 sm:text-left lg:col-span-7"
     >
       <h1
         className={`mb-4 text-3xl font-extrabold leading-tight sm:text-4xl md:text-5xl lg:text-6xl ${
           isDarkMode ? "text-white" : "text-[#002b36]"
         }`}
       >
-        <span className="bg-gradient-to-r from-[#268bd2] via-[#2aa198] to-[#b58900] bg-clip-text text-transparent">
+        <span className="block bg-gradient-to-r from-[#268bd2] via-[#2aa198] to-[#b58900] bg-clip-text text-transparent">
           Hello, I&apos;m
         </span>
-        <br className="hidden sm:block" />
-        <TypeAnimation
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-          sequence={[
-            "Sam",
-            1000,
-            "IC Designer",
-            1000,
-            "IC Researcher",
-            1000,
-            "Hardware Enthusiast",
-            1000,
-          ]}
-          wrapper="span"
-          speed={50}
-          repeat={Infinity}
-        />
+        {prefersReducedMotion ? (
+          <span className="mt-1 block min-h-[2.5rem] text-2xl sm:min-h-[3rem] sm:text-3xl md:text-4xl lg:min-h-[3.75rem] lg:text-5xl">
+            IC Designer
+          </span>
+        ) : (
+          <TypeAnimation
+            className="mt-1 block min-h-[2.5rem] text-2xl sm:min-h-[3rem] sm:text-3xl md:text-4xl lg:min-h-[3.75rem] lg:text-5xl"
+            sequence={[
+              "Sam",
+              1000,
+              "IC Designer",
+              1000,
+              "IC Researcher",
+              1000,
+              "Hardware Enthusiast",
+              1000,
+            ]}
+            wrapper="span"
+            speed={50}
+            repeat={Infinity}
+          />
+        )}
       </h1>
       <p
         className={`mb-6 max-w-[600px] text-sm sm:mx-0 sm:text-base lg:text-lg ${
@@ -105,41 +110,21 @@ const HeroTextContent = () => {
           ))}
         </div>
 
-        <div
-          className="relative mt-4 inline-block"
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
+        <p
+          className={`mt-4 max-w-full text-xs leading-5 ${
+            isDarkMode ? "text-[#79c0ff]" : "text-[#2075c7]"
+          }`}
         >
-          <span
-            className={`text-xs font-medium ${
-              isDarkMode ? "text-[#79c0ff]" : "text-[#2075c7]"
-            }`}
+          Interactive model attribution:{" "}
+          <Link
+            href="https://skfb.ly/prRXD"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#268bd2]"
           >
-            <span className="animate-pulse">See also:</span>{" "}
-            The 3D model is {" "}
-            <Link
-              href="https://skfb.ly/prRXD"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold hover:underline"
-            >
-              Oiiaioooooiai Cat
-            </Link>
-            <span className="ml-1 inline-block animate-bounce">inspired asset</span>
-          </span>
-
-          <div
-            className={`absolute left-0 top-full z-10 mt-2 max-w-[250px] rounded-md border px-3 py-1.5 text-xs transition-opacity duration-300 ${
-              showTooltip ? "opacity-100" : "pointer-events-none opacity-0"
-            } ${
-              isDarkMode
-                ? "border-[#30363d] bg-[#161b22] text-[#8b949e]"
-                : "border-[#d0d7de] bg-[#e6eef8] text-[#657b83]"
-            }`}
-          >
-            A playful detail for the landing page. It stays lightweight on smaller or motion-reduced devices.
-          </div>
-        </div>
+            Oiiaioooooiai Cat
+          </Link>
+        </p>
       </div>
     </motion.div>
   );

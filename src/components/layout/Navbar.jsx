@@ -37,16 +37,24 @@ const Navbar = () => {
         setNavbarOpen(false);
       }
     };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setNavbarOpen(false);
+      }
+    };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   return (
     <nav
       ref={navRef}
+      aria-label="Primary navigation"
       className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md transition-colors duration-300
              border-[var(--color-border)] bg-[var(--color-card-bg)] text-[var(--color-text)]"
     >
@@ -54,6 +62,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           href={"/"}
+          aria-label="Sam Chen portfolio home"
           className="text-xl md:text-4xl font-semibold transition-colors duration-300 text-[var(--color-text)]"
         >
           <Logo />
@@ -74,6 +83,7 @@ const Navbar = () => {
               href="https://github.com/samcby"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Sam Chen on GitHub"
               className={`transition-colors duration-300
                 ${isDarkMode 
                   ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -95,6 +105,7 @@ const Navbar = () => {
               href="https://www.linkedin.com/in/bingyu-chen-b85b36324/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Sam Chen on LinkedIn"
               className={`transition-colors duration-300
                 ${isDarkMode 
                   ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -116,6 +127,7 @@ const Navbar = () => {
               href="https://orcid.org/my-orcid?orcid=0009-0002-0844-408X"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Sam Chen on ORCID"
               className={`transition-colors duration-300
                 ${isDarkMode 
                   ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -136,7 +148,9 @@ const Navbar = () => {
 
           {/* 鏆楄壊妯″紡鍒囨崲鎸夐挳 */}
           <motion.button
+            type="button"
             onClick={toggleTheme}
+            aria-label={`Switch to ${isDarkMode ? "light" : "dark"} theme`}
             className={`flex items-center gap-2 px-3 py-1.5 rounded-full border-2
               ${isDarkMode 
                 ? 'bg-[#f8fafc] border-[#586e75] text-[#93a1a1]' 
@@ -176,7 +190,11 @@ const Navbar = () => {
         {/* 绉诲姩绔彍鍗曟寜閽?*/}
         <div className="md:hidden">
           <motion.button
+            type="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
+            aria-label={navbarOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={navbarOpen}
+            aria-controls="mobile-navigation"
             className={`p-2 rounded-lg border-2 transition-colors duration-300
                       ${isDarkMode 
                         ? 'border-[#586e75] text-[#93a1a1] hover:border-[#93a1a1]' 
@@ -196,6 +214,7 @@ const Navbar = () => {
       {/* 绉诲姩绔彍鍗?*/}
       {navbarOpen && (
         <motion.div
+          id="mobile-navigation"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -234,7 +253,9 @@ const Navbar = () => {
             {/* 绀句氦濯掍綋閾炬帴鍜屼富棰樺垏鎹?*/}
             <div className="flex items-center justify-center gap-8 py-1.5 px-4">
               <motion.button
+                type="button"
                 onClick={toggleTheme}
+                aria-label={`Switch to ${isDarkMode ? "light" : "dark"} theme`}
                 className={`transition-colors duration-300
                   ${isDarkMode 
                     ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -271,6 +292,7 @@ const Navbar = () => {
                 href="https://github.com/samcby"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Sam Chen on GitHub"
                 className={`transition-colors duration-300
                   ${isDarkMode 
                     ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -292,6 +314,7 @@ const Navbar = () => {
                 href="https://www.linkedin.com/in/bingyu-chen-b85b36324/"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Sam Chen on LinkedIn"
                 className={`transition-colors duration-300
                   ${isDarkMode 
                     ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 
@@ -313,6 +336,7 @@ const Navbar = () => {
                 href="https://orcid.org/my-orcid?orcid=0009-0002-0844-408X"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Sam Chen on ORCID"
                 className={`transition-colors duration-300
                   ${isDarkMode 
                     ? 'text-[#93a1a1] hover:text-[#fdf6e3]' 

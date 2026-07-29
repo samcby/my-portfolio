@@ -75,18 +75,8 @@ canvas {
   --surface-border: #d8e2eb;
   --text-primary: #002b36;
   --text-secondary: #586e75;
-}
-
-@layer base {
-  .react-resizable-handle {
-    @apply bg-gray-300 hover:bg-gray-400;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    bottom: 0;
-    right: 0;
-    cursor: se-resize;
-  }
+  --accent-primary: #268bd2;
+  --accent-secondary: #2aa198;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -103,6 +93,7 @@ html.light {
   --surface-border: #d8e2eb;
   --text-primary: #002b36;
   --text-secondary: #586e75;
+  color-scheme: light;
 }
 
 html.dark {
@@ -111,13 +102,52 @@ html.dark {
   --surface-border: #243240;
   --text-primary: #e6eef8;
   --text-secondary: #93a1a1;
+  color-scheme: dark;
+}
+
+html {
+  overflow-x: clip;
+  scroll-behavior: smooth;
 }
 
 body {
   color: var(--text-primary);
+  min-width: 320px;
+  overflow-x: clip;
+  font-family: var(--font-body), sans-serif;
   background: radial-gradient(circle at top, rgba(38, 139, 210, 0.05), transparent 32%),
     linear-gradient(to bottom, rgba(248, 251, 255, 0.92), rgba(255, 255, 255, 1)),
     var(--page-bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading), sans-serif;
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 0.75rem;
+  z-index: 10000;
+  transform: translateY(-160%);
+  border-radius: 9999px;
+  background: #268bd2;
+  color: #ffffff;
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.project-card-shell {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 580px;
 }
 
 @keyframes marquee {
@@ -254,4 +284,19 @@ input[type="range"]::-moz-range-track {
 
 .overscroll-none {
   overscroll-behavior: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

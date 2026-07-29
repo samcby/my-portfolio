@@ -1,178 +1,89 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
 
-const ThemeContext = createContext();
+import { createContext, useContext, useEffect, useSyncExternalStore } from "react";
 
-// 开发环境打印日志，生产环境不打印
-const isDev = process.env.NODE_ENV === "development";
-const log = (message) => {
-  if (isDev) console.log(message);
-};
+const ThemeContext = createContext({
+  isDarkMode: false,
+  toggleTheme: () => {},
+  resetToSystemTheme: () => {},
+});
 
-// 安全访问 localStorage
-const safeLocalStorage = {
-  getItem: (key) => {
-    try {
-      return localStorage.getItem(key);
-    } catch (error) {
-      log(`Error accessing localStorage: ${error}`);
-      return null;
+const THEME_EVENT = "portfolio-theme-change";
+
+function hasManualTheme() {
+  return window.localStorage.getItem("userThemeChoice") === "true";
+}
+
+function getThemeSnapshot() {
+  if (hasManualTheme()) {
+    return window.localStorage.getItem("theme") === "dark";
+  }
+
+  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+}
+
+function subscribeToTheme(onStoreChange) {
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const handleSystemChange = () => {
+    if (!hasManualTheme()) onStoreChange();
+  };
+  const handleStorage = (event) => {
+    if (!event.key || event.key === "theme" || event.key === "userThemeChoice") {
+      onStoreChange();
     }
-  },
-  setItem: (key, value) => {
-    try {
-      localStorage.setItem(key, value);
-    } catch (error) {
-      log(`Error setting localStorage: ${error}`);
-    }
-  },
-  removeItem: (key) => {
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      log(`Error removing from localStorage: ${error}`);
-    }
-  },
-};
+  };
+
+  mediaQuery.addEventListener("change", handleSystemChange);
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener(THEME_EVENT, onStoreChange);
+
+  return () => {
+    mediaQuery.removeEventListener("change", handleSystemChange);
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener(THEME_EVENT, onStoreChange);
+  };
+}
+
+function notifyThemeChange() {
+  window.dispatchEvent(new Event(THEME_EVENT));
+}
 
 export function ThemeProvider({ children }) {
-  const [mounted, setMounted] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false); // 默认值在服务器端和客户端保持一致
-
-  // 获取系统主题偏好
-  const getSystemTheme = () => {
-    try {
-      return window.matchMedia("(prefers-color-scheme: dark)").matches;
-    } catch (error) {
-      log(`Error detecting system theme: ${error}`);
-      return false;
-    }
-  };
-
-  // 只在客户端执行主题初始化
-  useEffect(() => {
-    const savedTheme = safeLocalStorage.getItem("theme");
-    const userChoice = safeLocalStorage.getItem("userThemeChoice");
-    const systemDarkMode = getSystemTheme();
-
-    log(
-      `初始化主题 - 保存的主题: ${savedTheme}, 用户选择: ${userChoice}, 系统暗黑模式: ${systemDarkMode}`
-    );
-
-    if (savedTheme && userChoice === "true") {
-      // 用户手动选择的主题优先
-      log(`使用用户选择的主题: ${savedTheme}`);
-      setIsDarkMode(savedTheme === "dark");
-    } else {
-      // 否则跟随系统主题，并删除任何可能残留的主题设置
-      log(`跟随系统主题: ${systemDarkMode ? "暗黑" : "光亮"}`);
-      safeLocalStorage.removeItem("theme");
-      safeLocalStorage.removeItem("userThemeChoice");
-      setIsDarkMode(systemDarkMode);
-    }
-    setMounted(true);
-  }, []);
-
-  // 监听系统主题变化
-  useEffect(() => {
-    if (!mounted) return;
-
-    // 只在没有用户手动设置的情况下跟随系统主题
-    if (safeLocalStorage.getItem("userThemeChoice") !== "true") {
-      try {
-        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-        const handleChange = (e) => {
-          log(`系统主题变化为: ${e.matches ? "暗黑" : "光亮"}`);
-          setIsDarkMode(e.matches);
-          // 清除任何可能残留的localStorage设置
-          safeLocalStorage.removeItem("theme");
-        };
-
-        mediaQuery.addEventListener("change", handleChange);
-        return () => mediaQuery.removeEventListener("change", handleChange);
-      } catch (error) {
-        log(`Error setting up media query listener: ${error}`);
-      }
-    }
-  }, [mounted]);
+  const isDarkMode = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    () => false
+  );
 
   useEffect(() => {
-    if (!mounted) return;
+    const root = document.documentElement;
+    root.classList.add("theme-transition");
+    root.classList.toggle("dark", isDarkMode);
+    root.classList.toggle("light", !isDarkMode);
+    root.style.colorScheme = isDarkMode ? "dark" : "light";
 
-    // 更新 DOM 和 localStorage
-    try {
-      const root = document.documentElement;
+    const timeout = window.setTimeout(() => {
+      root.classList.remove("theme-transition");
+    }, 300);
 
-      // 添加过渡类，使主题切换更平滑
-      root.classList.add("theme-transition");
-
-      if (isDarkMode) {
-        root.classList.add("dark");
-        root.classList.remove("light");
-
-        // 只有在用户手动切换时才保存到localStorage
-        if (safeLocalStorage.getItem("userThemeChoice") === "true") {
-          safeLocalStorage.setItem("theme", "dark");
-        }
-      } else {
-        root.classList.remove("dark");
-        root.classList.add("light");
-
-        // 只有在用户手动切换时才保存到localStorage
-        if (safeLocalStorage.getItem("userThemeChoice") === "true") {
-          safeLocalStorage.setItem("theme", "light");
-        }
-      }
-
-      // 移除过渡类，确保只在主题切换时有过渡效果
-      setTimeout(() => {
-        root.classList.remove("theme-transition");
-      }, 1000);
-    } catch (error) {
-      log(`Error updating DOM: ${error}`);
-    }
-  }, [isDarkMode, mounted]);
+    return () => window.clearTimeout(timeout);
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
-    // 标记用户已手动切换主题
-    safeLocalStorage.setItem("userThemeChoice", "true");
-    const newMode = !isDarkMode;
-    log(`用户手动切换主题为: ${newMode ? "暗黑" : "光亮"}`);
-    setIsDarkMode(newMode);
+    window.localStorage.setItem("userThemeChoice", "true");
+    window.localStorage.setItem("theme", getThemeSnapshot() ? "light" : "dark");
+    notifyThemeChange();
   };
 
-  // 重置为跟随系统主题
   const resetToSystemTheme = () => {
-    safeLocalStorage.removeItem("theme");
-    safeLocalStorage.removeItem("userThemeChoice");
-    const systemTheme = getSystemTheme();
-    log(`重置为系统主题: ${systemTheme ? "暗黑" : "光亮"}`);
-    setIsDarkMode(systemTheme);
+    window.localStorage.removeItem("theme");
+    window.localStorage.removeItem("userThemeChoice");
+    notifyThemeChange();
   };
-
-  // 在客户端水合完成前返回一个基础渲染
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider
-        value={{
-          isDarkMode: false,
-          toggleTheme: () => {},
-          resetToSystemTheme: () => {},
-        }}
-      >
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
 
   return (
     <ThemeContext.Provider
-      value={{
-        isDarkMode,
-        toggleTheme,
-        resetToSystemTheme,
-      }}
+      value={{ isDarkMode, toggleTheme, resetToSystemTheme }}
     >
       {children}
     </ThemeContext.Provider>

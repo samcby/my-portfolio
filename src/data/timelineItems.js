@@ -40,14 +40,14 @@ const TIMELINE_ITEMS = [
       "We designed and implemented a complex out-of-order RISC-V processor using SystemVerilog. The processor flow supports out-of-order execution, renaming, dispatching, reservation stations, and many other advanced features.",
   },
   {
-    date: "Sep 2025 - TBD",
-    title: "Master of Electrical and Computer Engineering",
+    date: "Sep 2025 - Expected 2027",
+    title: "M.S. in Electrical and Computer Engineering",
     location: "UCLA | Los Angeles, CA",
     description:
-      "GPA: TBD | Focused on Circuit Design and Computer Architecture.",
+      "Focused on VLSI design, computer architecture, deep learning, and parallel computing.",
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
-      "Key Courses: TBD | Expected Graduation: 2027",
+      "Key coursework includes VLSI circuit design and automation, advanced computer architecture, neural networks and deep learning, and parallel and distributed computing.",
   },
   {
     date: "Jan 2025 - Jul 2025",
@@ -85,7 +85,7 @@ const TIMELINE_ITEMS = [
       "According to Robei's requirements, we used the company's EDA software and FPGA hardware to design and assemble a robot ourselves, enabling it to perform functions such as gripping and transferring goods with a robotic arm, moving, avoiding obstacles, traversing complex terrain, and remote control.",
     logo: "/images/sysu.jpg",
     details:
-      "Implemented a Bluetooth-controlled robotic car and arm system through hardware-software co-design: wrote Verilog for FPGA through Robei閳ユ獨 EDA(a tool without any IP cores) and developed a C# host program, achieving smooth, precise control via PID algorithms. ",
+      "Implemented a Bluetooth-controlled robotic car and arm system through hardware-software co-design. Wrote Verilog for FPGA using Robei EDA and developed a C# host program, achieving smooth and precise control with PID algorithms.",
   },
   {
     date: "Jan 2024 - Feb 2024",
@@ -115,7 +115,7 @@ const TIMELINE_ITEMS = [
       "By reconstructing the adder's carry block and optimizing transistor size and supply voltage, I reduced the circuit's power consumption by 68.16% while still meeting speed requirements. ",
     logo: "https://p.ipic.vip/q1ysgx.png",
     details:
-      "Redesigned the adder by extracting and restructuring the carry-out module from a mirror adder, significantly reducing power and improving efficiency. Performed path effort-based delay analysis and used Excel Solver for sizing and VDD optimization, achieving 68.16% power reduction with delay kept within 1.5鑴?the minimum.The related paper is published as follows: Bingyu Chen. An Optimal Low Energy Cost 4-bit Absolute Value Detector with 55.5 FO4 (1V) Based on CMOS Process, AIP Conference Proceedings. (2023) https://doi.org/10.1063/5.0171160",
+      "Redesigned the adder by extracting and restructuring the carry-out module from a mirror adder, significantly reducing power and improving efficiency. Performed path-effort delay analysis and used Excel Solver for sizing and VDD optimization, achieving a 68.16% power reduction while keeping delay within 1.5x of the minimum. The work was published in AIP Conference Proceedings (2023): https://doi.org/10.1063/5.0171160",
   },
   {
     date: "Sept 2021 - June 2025",

@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const rateLimits = new Map();
+
 const escapeHtml = (value = "") =>
   value
     .replaceAll("&", "&amp;")
@@ -10,13 +15,78 @@ const escapeHtml = (value = "") =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 
+const cleanValue = (value, maxLength) =>
+  typeof value === "string" ? value.trim().slice(0, maxLength) : "";
+
+const getClientAddress = (request) =>
+  request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  request.headers.get("x-real-ip") ||
+  "unknown";
+
+const isRateLimited = (clientAddress) => {
+  const now = Date.now();
+  const existing = rateLimits.get(clientAddress);
+
+  if (!existing || now - existing.startedAt > RATE_LIMIT_WINDOW_MS) {
+    rateLimits.set(clientAddress, { count: 1, startedAt: now });
+    return false;
+  }
+
+  existing.count += 1;
+  return existing.count > RATE_LIMIT_MAX_REQUESTS;
+};
+
+const isSameOrigin = (request) => {
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
+  if (!origin || !host) return true;
+
+  try {
+    return new URL(origin).host === host;
+  } catch {
+    return false;
+  }
+};
+
 export async function POST(request) {
   try {
-    const { name, email, subject, message } = await request.json();
+    if (!isSameOrigin(request)) {
+      return NextResponse.json(
+        { message: "This request could not be verified." },
+        { status: 403 }
+      );
+    }
+
+    const body = await request.json();
+    const website = cleanValue(body.website, 200);
+
+    // Silently accept bot submissions so the honeypot is not disclosed.
+    if (website) {
+      return NextResponse.json({ ok: true });
+    }
+
+    if (isRateLimited(getClientAddress(request))) {
+      return NextResponse.json(
+        { message: "Too many messages were submitted. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    const name = cleanValue(body.name, 100);
+    const email = cleanValue(body.email, 254);
+    const subject = cleanValue(body.subject, 150);
+    const message = cleanValue(body.message, 5000);
 
     if (!name || !email || !subject || !message) {
       return NextResponse.json(
         { message: "Please complete every required field." },
+        { status: 400 }
+      );
+    }
+
+    if (!EMAIL_PATTERN.test(email)) {
+      return NextResponse.json(
+        { message: "Please enter a valid email address." },
         { status: 400 }
       );
     }
@@ -29,7 +99,7 @@ export async function POST(request) {
       return NextResponse.json(
         {
           message:
-            "The contact form is not configured yet. Add RESEND_API_KEY and CONTACT_TO_EMAIL on the server.",
+            "Online delivery is temporarily unavailable. Please use the direct email link.",
         },
         { status: 503 }
       );
@@ -58,22 +128,27 @@ export async function POST(request) {
           </div>
         `,
       }),
+      signal: AbortSignal.timeout(10000),
     });
-
-    const payload = await response.json();
 
     if (!response.ok) {
       return NextResponse.json(
-        { message: payload.message || "The email provider rejected the message." },
-        { status: response.status }
+        {
+          message:
+            "Online delivery is temporarily unavailable. Please use the direct email link.",
+        },
+        { status: 502 }
       );
     }
 
-    return NextResponse.json({ ok: true, id: payload.id });
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact API error:", error);
     return NextResponse.json(
-      { message: "Something went wrong while sending your message." },
+      {
+        message:
+          "The message could not be sent. Please use the direct email link.",
+      },
       { status: 500 }
     );
   }

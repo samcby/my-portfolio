@@ -1,7 +1,6 @@
 "use client";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useDeferredValue, useMemo, useState } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import ProjectCard from "@/components/projects/ProjectCard";
 import ProjectTag from "@/components/projects/ProjectTag";
 import PROJECT_DATA from "@/data/projectData";
@@ -17,8 +16,7 @@ const ProjectsSection = ({ compact = false }) => {
   const [tag, setTag] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState(compact ? "featured" : "newest");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const deferredSearchTerm = useDeferredValue(searchTerm);
   const { isDarkMode } = useTheme();
 
   const tagOptions = useMemo(
@@ -40,7 +38,7 @@ const ProjectsSection = ({ compact = false }) => {
   }, []);
 
   const filteredProjects = useMemo(() => {
-    const normalizedSearch = searchTerm.trim().toLowerCase();
+    const normalizedSearch = deferredSearchTerm.trim().toLowerCase();
 
     let projects = PROJECT_DATA.filter((project) => {
       const matchesTag = tag === "All" || project.tag.includes(tag);
@@ -72,20 +70,15 @@ const ProjectsSection = ({ compact = false }) => {
 
     if (compact) {
       const featuredProjects = projects.filter((project) => project.featured);
-      return (featuredProjects.length > 0 ? featuredProjects : projects).slice(0, 6);
+      return (featuredProjects.length > 0 ? featuredProjects : projects).slice(0, 3);
     }
 
     return projects;
-  }, [compact, searchTerm, sortBy, tag]);
-
-  const cardVariants = {
-    initial: { y: 40, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-  };
+  }, [compact, deferredSearchTerm, sortBy, tag]);
 
   return (
     <section id="projects" className="flex flex-col items-center">
-      <div className="grid w-full max-w-[1200px] gap-4 sm:grid-cols-3">
+      <div className="grid w-full max-w-[1200px] grid-cols-3 gap-2 sm:gap-4">
         {[
           { label: "Projects", value: stats.total },
           { label: "Featured", value: stats.featured },
@@ -93,12 +86,12 @@ const ProjectsSection = ({ compact = false }) => {
         ].map((item) => (
           <div
             key={item.label}
-            className={`rounded-2xl border px-5 py-4 ${
+            className={`rounded-2xl border px-3 py-3 sm:px-5 sm:py-4 ${
               isDarkMode ? "border-[#586e75] bg-[#073642]" : "border-[#93a1a1] bg-[#e6eef8]"
             }`}
           >
-            <p className={`text-sm ${isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"}`}>{item.label}</p>
-            <p className={`mt-2 text-3xl font-bold ${isDarkMode ? "text-white" : "text-[#002b36]"}`}>{item.value}</p>
+            <p className={`text-xs sm:text-sm ${isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"}`}>{item.label}</p>
+            <p className={`mt-1 text-xl font-bold sm:mt-2 sm:text-3xl ${isDarkMode ? "text-white" : "text-[#002b36]"}`}>{item.value}</p>
           </div>
         ))}
       </div>
@@ -115,6 +108,7 @@ const ProjectsSection = ({ compact = false }) => {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
               placeholder="Search by title, skill, or topic"
+              aria-describedby="project-results"
               className={`w-full rounded-2xl border px-4 py-3 text-sm outline-none transition-colors ${
                 isDarkMode
                   ? "border-[#586e75] bg-[#073642] text-[#fdf6e3] placeholder-[#93a1a1]"
@@ -156,6 +150,7 @@ const ProjectsSection = ({ compact = false }) => {
       )}
 
       <div
+        aria-label="Filter projects by focus area"
         className={`mt-6 flex flex-wrap items-center justify-center gap-2 py-2 text-sm transition-colors duration-300 ${
           isDarkMode ? "text-[#93a1a1]" : "text-[#002b36]"
         }`}
@@ -166,24 +161,26 @@ const ProjectsSection = ({ compact = false }) => {
       </div>
 
       {!compact ? (
-        <p className={`mb-6 text-sm ${isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"}`}>
+        <p
+          id="project-results"
+          role="status"
+          aria-live="polite"
+          className={`mb-6 text-sm ${isDarkMode ? "text-[#93a1a1]" : "text-[#586e75]"}`}
+        >
           Showing {filteredProjects.length} project{filteredProjects.length === 1 ? "" : "s"}
           {searchTerm ? ` for "${searchTerm}"` : ""}.
         </p>
       ) : null}
 
       {filteredProjects.length > 0 ? (
-        <ul ref={ref} className="grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredProjects.map((project, index) => (
-            <motion.li
+        <ul className="grid w-full max-w-[1200px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProjects.map((project) => (
+            <li
               key={project.id}
-              variants={cardVariants}
-              initial="initial"
-              animate={isInView ? "animate" : "initial"}
-              transition={{ duration: 0.3, delay: index * 0.08 }}
+              className="project-card-shell"
             >
               <ProjectCard {...project} imgUrl={project.image} />
-            </motion.li>
+            </li>
           ))}
         </ul>
       ) : (

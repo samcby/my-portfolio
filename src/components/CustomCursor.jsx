@@ -1,77 +1,76 @@
 "use client";
-import { useState, useEffect, useCallback, memo } from 'react';
-import '../styles/cursor.css';
+
+import { memo, useEffect, useRef, useState } from "react";
+import "../styles/cursor.css";
+
+const interactiveSelector = 'a, button, [role="button"]';
+const textSelector =
+  'input, textarea, [contenteditable="true"], p, h1, h2, h3, h4, h5, h6, span';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [cursorType, setCursorType] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
-  
-  // Use useCallback to optimize event handler
-  const updatePosition = useCallback((e) => {
-    // Use requestAnimationFrame to optimize rendering performance
-    requestAnimationFrame(() => {
-      const { clientX, clientY } = e;
-      setPosition({ x: clientX, y: clientY });
-      
-      // Check element type under cursor and set appropriate cursor style
-      const target = e.target;
-      
-      // Optimize condition checks with more concise approach
-      if (target.matches('a, button, [role="button"]') || 
-          target.closest('a, button, [role="button"]')) {
-        setCursorType('link');
-      } else if (target.matches('input, textarea, [contenteditable], p, h1, h2, h3, h4, h5, h6, span')) {
-        setCursorType('text');
-      } else if (target.disabled || target.matches('.disabled, [disabled]')) {
-        setCursorType('not-allowed');
-      } else if (target.matches('.loading, .processing, .busy-cursor')) {
-        setCursorType('busy');
-      } else {
-        setCursorType('');
-      }
-    });
-  }, []);
-  
-  // Handle mouse visibility
-  const handleMouseEnter = useCallback(() => setIsVisible(true), []);
-  const handleMouseLeave = useCallback(() => setIsVisible(false), []);
-  
+  const cursorRef = useRef(null);
+  const [cursorType, setCursorType] = useState("");
+  const [enabled, setEnabled] = useState(false);
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
-    // Add mouse enter/leave handling
-    
-    // Performance optimization: only update position when mouse moves
-    window.addEventListener('mousemove', updatePosition, { passive: true });
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    
-    // Ensure initial visibility if mouse is already on page
-    if (typeof document !== 'undefined' && document.hasFocus()) {
-      setIsVisible(true);
-    }
-    
-    return () => {
-      window.removeEventListener('mousemove', updatePosition);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseleave', handleMouseLeave);
+    const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    const updateCapability = () => {
+      setEnabled(pointerQuery.matches);
+      if (!pointerQuery.matches) {
+        setVisible(false);
+      }
     };
-  }, [updatePosition, handleMouseEnter, handleMouseLeave]);
-  
-  // Don't render if not visible
-  if (!isVisible) return null;
-  
+
+    updateCapability();
+    pointerQuery.addEventListener("change", updateCapability);
+    return () => pointerQuery.removeEventListener("change", updateCapability);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return undefined;
+
+    const handlePointerMove = (event) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+      }
+
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      setVisible(true);
+      if (target.closest(interactiveSelector)) {
+        setCursorType("link");
+      } else if (target.closest(textSelector)) {
+        setCursorType("text");
+      } else if (target.closest(".loading, .processing, .busy-cursor")) {
+        setCursorType("busy");
+      } else {
+        setCursorType("");
+      }
+    };
+
+    const handlePointerLeave = () => setVisible(false);
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    document.addEventListener("mouseleave", handlePointerLeave);
+
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("mouseleave", handlePointerLeave);
+    };
+  }, [enabled]);
+
+  if (!enabled) return null;
+
   return (
-    <div 
-      className={`custom-cursor ${cursorType}`}
-      style={{
-        transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
-        opacity: isVisible ? 1 : 0,
-        willChange: 'transform'
-      }}
+    <div
+      ref={cursorRef}
+      className={`custom-cursor ${cursorType} ${visible ? "is-visible" : ""}`}
       aria-hidden="true"
     />
   );
 };
 
-// Memoize component to prevent unnecessary re-renders
-export default memo(CustomCursor); 
+export default memo(CustomCursor);

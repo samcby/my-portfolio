@@ -4,11 +4,16 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
 
-const TabButton = ({ children, selectTab, active }) => {
+const TabButton = ({ children, selectTab, active, id, controls }) => {
   const { isDarkMode } = useTheme();
 
   return (
     <motion.button
+      type="button"
+      id={id}
+      role="tab"
+      aria-selected={active}
+      aria-controls={controls}
       onClick={selectTab}
       className={`relative px-4 py-2 rounded-lg text-sm sm:text-base font-medium 
                  transition-all duration-300 ease-in-out

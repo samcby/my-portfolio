@@ -1,9 +1,21 @@
 import "./globals.css";
-import "react-resizable/css/styles.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CustomCursor from "@/components/CustomCursor";
+import { Manrope, Space_Grotesk } from "next/font/google";
+
+const bodyFont = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+
+const headingFont = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-heading",
+});
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -111,13 +123,24 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <style dangerouslySetInnerHTML={{ __html: noFlashStyle }} />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script id="theme-init" dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body suppressHydrationWarning className="min-h-screen transition-all duration-300 font-sans">
+      <body
+        suppressHydrationWarning
+        className={`${bodyFont.variable} ${headingFont.variable} min-h-screen transition-colors duration-300`}
+      >
         <ThemeProvider>
-          <div className="flex min-h-screen flex-col relative bg-[#ffffff] transition-colors duration-300 dark:bg-[#0b1220]">
+          <div className="relative flex min-h-screen flex-col bg-[var(--page-bg)] transition-colors duration-300">
+            <a className="skip-link" href="#main-content">
+              Skip to main content
+            </a>
             <Navbar />
-            <main className="flex-grow transition-colors duration-300">{children}</main>
+            <main
+              id="main-content"
+              className="flex-grow transition-colors duration-300"
+            >
+              {children}
+            </main>
             <Footer />
             <CustomCursor />
           </div>

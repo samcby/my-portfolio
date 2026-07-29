@@ -6,38 +6,38 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "clean": "rm -rf .next && killall node",
-    "dev:clean": "npm run clean && npm run dev"
+    "lint": "eslint .",
+    "clean": "rimraf .next",
+    "dev:clean": "npm run clean && npm run dev",
+    "analyze": "cross-env ANALYZE=true next build"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.0.18",
-    "@react-three/drei": "^9.88.0",
-    "@react-three/fiber": "^8.15.16",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "14.1.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
     "framer-motion": "^11.15.0",
-    "next": "14.1.0",
+    "next": "^16.2.12",
     "next-themes": "^0.4.6",
-    "postcss": "^8.4.49",
-    "react": "^18.2.0",
-    "react-animated-numbers": "^0.16.0",
-    "react-dom": "^18.2.0",
-    "react-draggable": "^4.4.6",
-    "react-google-recaptcha": "^3.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "react-icons": "^5.5.0",
-    "react-resizable": "^3.0.5",
     "react-type-animation": "^3.1.0",
     "react-vertical-timeline-component": "^3.3.3",
-    "rimraf": "^5.0.5",
-    "tailwindcss": "^3.4.17",
     "three": "^0.160.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "14.1.0",
-    "depcheck": "^1.4.7"
+    "@next/bundle-analyzer": "^16.2.12",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.2.12",
+    "postcss": "8.5.24",
+    "rimraf": "^6.1.3",
+    "tailwindcss": "^3.4.17"
+  },
+  "overrides": {
+    "postcss": "8.5.24",
+    "sharp": "0.35.3"
   }
 }

@@ -1,16 +1,20 @@
-"use client";
-import { useRef } from 'react';
-import Interests from '@/components/hobbies/Interest';
-import styles from './page.module.css';
+import Interest from "@/components/hobbies/Interest";
+import PageContainer from "@/components/layout/PageContainer";
+import PageTitle from "@/components/ui/PageTitle";
+
+export const metadata = {
+  title: "Hobbies",
+  description:
+    "A look at Sam Chen's interests beyond engineering, including music, videography, travel, games, movies, and volunteering.",
+};
 
 const HobbiesPage = () => {
-  const containerRef = useRef(null);
-
   return (
-    <div className={styles.container} ref={containerRef}>
-      <Interests containerRef={containerRef} />
-    </div>
+    <PageContainer>
+      <PageTitle title="Hobbies" />
+      <Interest />
+    </PageContainer>
   );
 };
 
-export default HobbiesPage; 
+export default HobbiesPage;
